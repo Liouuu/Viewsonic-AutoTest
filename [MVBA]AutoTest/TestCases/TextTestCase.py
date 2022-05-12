@@ -2,6 +2,7 @@ import datetime
 import time
 from openpyxl import Workbook
 from openpyxl import load_workbook
+from Params.ElementParams import ElementParam
 from UnitFunction import Canvas, Text, Screenshot, Compare, log, export_table
 import sys
 import os
@@ -35,7 +36,7 @@ def testCase1(self):
             './TestCases/case document/Text', 0)
         #Text_log.logger.info("Start TextCase1:在畫布建立文字編輯器，然後更改Font跟Size並套用Bold，接著輸入文字。")
         time.sleep(5)
-        textIcon_id = "com.viewsonic.droid:id/btnTypingText"
+        textIcon_id = ElementParam._Id_btnTypingText
         textIcon = self.driver.find_element_by_id(textIcon_id)
         textIcon.screenshot(save_path)
         export_table.export_table(
@@ -52,20 +53,20 @@ def testCase1(self):
 
         Text_log.logger.info("更改Font")
         Text.ChangeFont(self, 3)
-        FontName_id = "com.viewsonic.droid:id/spinnerFontName"
+        FontName_id = ElementParam._Id_spinnerFontName
         FontName = self.driver.find_element_by_id(FontName_id)
         FontName.screenshot(save_path)
         export_table.export_table(
             './Excels/Text' + getTime, step=allStep[2], img_path=save_path)
         Text_log.logger.info("更改Size")
         Text.ChangeSize(self, 9)
-        FontSize_id = "com.viewsonic.droid:id/spinnerFontSize"
+        FontSize_id = ElementParam._Id_spinnerFontSize
         FontSize = self.driver.find_element_by_id(FontSize_id)
         FontSize.screenshot(save_path)
         export_table.export_table(
             './Excels/Text' + getTime, step=allStep[3], img_path=save_path)
         Text_log.logger.info("套用Bold")
-        Bold_id = "com.viewsonic.droid:id/checkBold"
+        Bold_id = ElementParam._Id_checkBold
         Bold = self.driver.find_element_by_id(Bold_id)
         Bold.screenshot(save_path)
         export_table.export_table(
@@ -76,7 +77,7 @@ def testCase1(self):
 
         Text_log.logger.info("輸入文字'testcaseone'")
         Text.TypeText(self, "testcaseone")
-        editText_id = "com.viewsonic.droid:id/editText"
+        editText_id = ElementParam._Id_editText
         editText = self.driver.find_element_by_id(editText_id)
         editText.screenshot(save_path)
         export_table.export_table(
@@ -89,7 +90,7 @@ def testCase1(self):
             './Excels/Text' + getTime, step=allStep[6], img_path="./TestCases/Screenshots/Text/Case1_Editor.png")
 
         Text_log.logger.info("關閉文字編輯框")
-        buttonMenuClose_id = "com.viewsonic.droid:id/buttonMenuClose"
+        buttonMenuClose_id = ElementParam._Id_buttonMenuClose
         buttonMenuClose = self.driver.find_element_by_id(buttonMenuClose_id)
         buttonMenuClose.screenshot(save_path)
         Text.CloseEditor(self)

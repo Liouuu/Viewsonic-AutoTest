@@ -1,6 +1,8 @@
 
 import time
 import datetime
+from xml.dom.minidom import Element
+from Params.ElementParams import ElementParam
 from UnitFunction import LoginAndActive, MagicBox, FloatBar, ToolBar, Screenshot, Compare, log
 import sys
 import os
@@ -46,11 +48,11 @@ def testImport(self, locate="Local"):
                 MagicBox.ChooseFileType(self, type)
                 time.sleep(3)
                 n = 0
-                while self.driver.find_element_by_id("com.viewsonic.droid:id/titleTextView").get_attribute("text") != "Auto-test":
+                while self.driver.find_element_by_id(ElementParam._Id_titleTextView).get_attribute("text") != "Auto-test":
                     n += 1
                     Import_log.logger.info("打開第"+str(n)+"層文件夾")
                     MagicBox.SelectFile(self, 1)
-                while self.driver.find_element_by_id("com.viewsonic.droid:id/btnLasso").get_attribute("selected") != "true":
+                while self.driver.find_element_by_id(ElementParam._Id_btnLasso).get_attribute("selected") != "true":
                     Import_log.logger.info("Import " + type + " file")
                     MagicBox.SelectFile(self, i+1)
                     time.sleep(10)

@@ -8,21 +8,22 @@ from selenium.webdriver.support import expected_conditions as EC
 from appium.webdriver.common.touch_action import TouchAction
 import time
 from UnitFunction import Canvas, Adorner, MagicBox
+from Params.ElementParams import ElementParam
 
 
 def inputsearch(self, type):
     WebDriverWait(self.driver, 15).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/searchEditText"))
+            (By.ID, ElementParam._Id_searchEditText))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/searchEditText").send_keys(type)
+        ElementParam._Id_searchEditText).send_keys(type)
     WebDriverWait(self.driver, 15).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/search_icon"))
+            (By.ID, ElementParam._Id_search_icon))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/search_icon").click()
+        ElementParam._Id_search_icon).click()
     search = "搜尋 "+type+" Image"
     WebDriverWait(self.driver, 60, 1).until(
         EC.presence_of_element_located(
@@ -67,10 +68,10 @@ def Checktype(self, type):
         MagicBox.SelectStorage(self)
         WebDriverWait(self.driver, 15).until(
             EC.presence_of_element_located(
-                (By.ID, "com.viewsonic.droid:id/textSaveResourceFormat"))
+                (By.ID, ElementParam._Id_textSaveResourceFormat))
         )
         imagetype = self.driver.find_element_by_id(
-            "com.viewsonic.droid:id/textSaveResourceFormat").get_attribute("text")
+            ElementParam._Id_textSaveResourceFormat).get_attribute("text")
 
         if imagetype[-3::] == type:
             return True, imagetype

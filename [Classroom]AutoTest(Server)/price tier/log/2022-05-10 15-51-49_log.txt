@@ -1,0 +1,10 @@
+2022-05-10 15-52-33	The case 'test_setting':  Start
+2022-05-10 15-52-36	The case 'test_setting':  Pass.............................................
+2022-05-10 15-52-36	The case 'test_setting':  End
+2022-05-10 15-52-36	The case 'test_cloud_intergration':  Start
+2022-05-10 15-52-39	The case 'test_cloud_intergration':  Pass.............................................
+2022-05-10 15-52-39	The case 'test_cloud_intergration':  End
+2022-05-10 15-52-39	The case 'test_about':  Start
+2022-05-10 15-52-42	The case 'test_about':  Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+2022-05-10 15-52-42	The case 'test_about':  End
+2022-05-10 15-52-42	The case 'test_new_file':  Start

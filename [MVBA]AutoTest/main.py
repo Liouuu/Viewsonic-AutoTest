@@ -1,10 +1,14 @@
+from optparse import IndentedHelpFormatter
 from unittest import suite
 from appium import webdriver
 import unittest
 import time
 import datetime
+from Params.ElementParams import ElementParam
+from Params.SystemParams import SysParams
 from UnitFunction import LoginAndActive, logCheck, log
 from TestCases import EraserTestCase, LoginAndActivateTestCase, TextTestCase, StickyNoteTestCase, ShapeTestCase, HighlighterTestCase, MarkerTestCase, BackgroundTestCase, AdornerTestCase, TierTestCase, ImagesearchCase, ImportTestcase
+
 
 '''Before you test MVBA, please check:
 1. Language setting should be English.
@@ -13,8 +17,8 @@ from TestCases import EraserTestCase, LoginAndActivateTestCase, TextTestCase, St
 4. The resolution should be 1920x1080.(建議用我桌上平板)
 5. MVBA theme should be Education.'''
 
-email = "mvbaautotest2@gmail.com"
-password = "$Password1"
+email = SysParams._Email
+password = SysParams._Password
 
 
 class NoActivateTestCase(unittest.TestCase):
@@ -24,7 +28,7 @@ class NoActivateTestCase(unittest.TestCase):
         desired_caps['platformName'] = 'Android'
         desired_caps['platformVersion'] = '10'
         desired_caps['deviceName'] = '172.21.13.194:5555'
-        desired_caps['appPackage'] = 'com.viewsonic.droid'
+        desired_caps['appPackage'] = ElementParam._Site
         desired_caps['noReset'] = False
         desired_caps['appActivity'] = '.MainActivity'
         self.driver = webdriver.Remote(
@@ -47,7 +51,7 @@ class MyTestCase(unittest.TestCase):
         desired_caps['platformName'] = 'Android'
         desired_caps['platformVersion'] = '10'
         desired_caps['deviceName'] = '172.21.13.194:5555'
-        desired_caps['appPackage'] = 'com.viewsonic.droid'
+        desired_caps['appPackage'] = ElementParam._Site
         desired_caps['noReset'] = True
         desired_caps['resetKeyboard'] = True
         desired_caps['unicodeKeyboard'] = True

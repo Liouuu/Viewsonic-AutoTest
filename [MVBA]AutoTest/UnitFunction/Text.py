@@ -1,3 +1,4 @@
+from Params.ElementParams import ElementParam
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -12,18 +13,18 @@ sys.path.append(os.getcwd())
 def SelectTextBtn(self):
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/btnTypingText"))
+            (By.ID, ElementParam._Id_btnTypingText))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/btnTypingText").click()
+        ElementParam._Id_btnTypingText).click()
 
 
 def TypeText(self, string: str):  # string can accept lower case a~z only
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/editText"))
+            (By.ID, ElementParam._Id_editText))
     )
-    self.driver.find_element_by_id("com.viewsonic.droid:id/editText").click()
+    self.driver.find_element_by_id(ElementParam._Id_editText).click()
     for char in string:
         if char >= 'a' and char <= 'z':
             keycode = str(29 + (ord(char)-ord('a')))
@@ -31,7 +32,7 @@ def TypeText(self, string: str):  # string can accept lower case a~z only
 
 
 def ChangeFont(self, index: int):  # index of font is 1~9
-    font_selector_id = "com.viewsonic.droid:id/spinnerFontName"
+    font_selector_id = ElementParam._Id_spinnerFontName
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located((By.ID, font_selector_id))
     )
@@ -43,7 +44,7 @@ def ChangeFont(self, index: int):  # index of font is 1~9
 
 
 def ChangeSize(self, index: int):  # index of size is 1~
-    size_selector_id = "com.viewsonic.droid:id/spinnerFontSize"
+    size_selector_id = ElementParam._Id_spinnerFontSize
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located((By.ID, size_selector_id))
     )
@@ -57,27 +58,27 @@ def ChangeSize(self, index: int):  # index of size is 1~
 def Bold(self):  # 粗體
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/checkBold"))
+            (By.ID, ElementParam._Id_checkBold))
     )
-    self.driver.find_element_by_id("com.viewsonic.droid:id/checkBold").click()
+    self.driver.find_element_by_id(ElementParam._Id_checkBold).click()
 
 
 def Italic(self):  # 斜體
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/checkItalic"))
+            (By.ID, ElementParam._Id_checkItalic))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/checkItalic").click()
+        ElementParam._Id_checkItalic).click()
 
 
 def UnderLine(self):
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/checkUnderline"))
+            (By.ID, ElementParam._Id_checkUnderline))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/checkUnderline").click()
+        ElementParam._Id_checkUnderline).click()
 
 
 def edittextclear(self, text):  # this function is designed for ChangeColorByAdvanced function
@@ -90,26 +91,26 @@ def edittextclear(self, text):  # this function is designed for ChangeColorByAdv
 def ChangeColor(self, type: str = "Standard", ColorNum: int = 1, R=255, G=255, B=255, A=255):
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/buttonColor"))
+            (By.ID, ElementParam._Id_buttonColor))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/buttonColor").click()
+        ElementParam._Id_buttonColor).click()
     if type == "Standard":
         WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located(
-                (By.ID, "com.viewsonic.droid:id/buttonStandard"))
+                (By.ID, ElementParam._Id_buttonStandard))
         )
         self.driver.find_element_by_id(
-            "com.viewsonic.droid:id/buttonStandard").click()
+            ElementParam._Id_buttonStandard).click()
         self.driver.find_element_by_xpath(
             '/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.LinearLayout/android.widget.GridView/android.view.View['+str(ColorNum)+']').click()
     elif type == "Advanced":
         WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located(
-                (By.ID, "com.viewsonic.droid:id/buttonAdvanced"))
+                (By.ID, ElementParam._Id_buttonAdvanced))
         )
         self.driver.find_element_by_id(
-            "com.viewsonic.droid:id/buttonAdvanced").click()
+            ElementParam._Id_buttonAdvanced).click()
         for i in range(4):
             pattern_xpath = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup" + \
                 "[" + str(i+1) + "]" + \
@@ -147,26 +148,26 @@ def ChangeColor(self, type: str = "Standard", ColorNum: int = 1, R=255, G=255, B
 def ChangeColorBg(self, type: str = "Standard", ColorNum: int = 1, R=255, G=255, B=255, A=255):
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/buttonColorBg"))
+            (By.ID, ElementParam._Id_buttonColorBg))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/buttonColorBg").click()
+        ElementParam._Id_buttonColorBg).click()
     if type == "Standard":
         WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located(
-                (By.ID, "com.viewsonic.droid:id/buttonStandard"))
+                (By.ID, ElementParam._Id_buttonStandard))
         )
         self.driver.find_element_by_id(
-            "com.viewsonic.droid:id/buttonStandard").click()
+            ElementParam._Id_buttonStandard).click()
         self.driver.find_element_by_xpath(
             '/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.LinearLayout/android.widget.GridView/android.view.View['+str(ColorNum)+']').click()
     elif type == "Advanced":
         WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located(
-                (By.ID, "com.viewsonic.droid:id/buttonAdvanced"))
+                (By.ID, ElementParam._Id_buttonAdvanced))
         )
         self.driver.find_element_by_id(
-            "com.viewsonic.droid:id/buttonAdvanced").click()
+            ElementParam._Id_buttonAdvanced).click()
         for i in range(4):
             pattern_xpath = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup" + \
                 "[" + str(i+1) + "]" + \
@@ -203,79 +204,79 @@ def ChangeColorBg(self, type: str = "Standard", ColorNum: int = 1, R=255, G=255,
 def Superscript(self):  # 上標
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/checkUpscript"))
+            (By.ID, ElementParam._Id_checkUpscript))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/checkUpscript").click()
+        ElementParam._Id_checkUpscript).click()
 
 
 def Subscript(self):  # 下標
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/checkDownscript"))
+            (By.ID, ElementParam._Id_checkDownscript))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/checkDownscript").click()
+        ElementParam._Id_checkDownscript).click()
 
 
 def AlignLeft(self):  # 靠左對齊
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/checkAlignLeft"))
+            (By.ID, ElementParam._Id_checkAlignLeft))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/checkAlignLeft").click()
+        ElementParam._Id_checkAlignLeft).click()
 
 
 def AlignRight(self):  # 靠右對齊
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/checkAlignRight"))
+            (By.ID, ElementParam._Id_checkAlignRight))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/checkAlignRight").click()
+        ElementParam._Id_checkAlignRight).click()
 
 
 def Center(self):  # 置中
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/checkAlignCenter"))
+            (By.ID, ElementParam._Id_checkAlignCenter))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/checkAlignCenter").click()
+        ElementParam._Id_checkAlignCenter).click()
 
 
 def List(self):  # 條列項目
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/checkBulleted"))
+            (By.ID, ElementParam._Id_checkBulleted))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/checkBulleted").click()
+        ElementParam._Id_checkBulleted).click()
 
 
 def AddIdent(self):  # 縮排
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/buttonIncIndent"))
+            (By.ID, ElementParam._Id_buttonIncIndent))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/buttonIncIndent").click()
+        ElementParam._Id_buttonIncIndent).click()
 
 
 def ReduceIdent(self):  # 減少縮排
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/buttonDecIndent"))
+            (By.ID, ElementParam._Id_buttonDecIndent))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/buttonDecIndent").click()
+        ElementParam._Id_buttonDecIndent).click()
 
 
 def CloseEditor(self):
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, "com.viewsonic.droid:id/buttonMenuClose"))
+            (By.ID, ElementParam._Id_buttonMenuClose))
     )
     self.driver.find_element_by_id(
-        "com.viewsonic.droid:id/buttonMenuClose").click()
+        ElementParam._Id_buttonMenuClose).click()

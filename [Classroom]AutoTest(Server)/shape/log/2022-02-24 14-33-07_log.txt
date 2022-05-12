@@ -1,0 +1,8 @@
+2022-02-24 14-34-01	shape menu1 Pass
+2022-02-24 14-34-06	shape1 Fail
+2022-02-24 14-34-14	shape menu2 Pass
+2022-02-24 14-34-19	shape2 Fail
+2022-02-24 14-34-26	shape menu3 Pass
+2022-02-24 14-34-32	shape3 Fail
+2022-02-24 14-34-39	shape menu4 Pass
+2022-02-24 14-34-45	shape4 Fail
