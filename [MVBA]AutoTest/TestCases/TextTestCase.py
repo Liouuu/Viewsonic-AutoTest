@@ -2,8 +2,9 @@ import datetime
 import time
 from openpyxl import Workbook
 from openpyxl import load_workbook
+from LibData import export_table
 from Params.ElementParams import ElementParam
-from UnitFunction import Canvas, Text, Screenshot, Compare, log, export_table
+from UnitFunction import Canvas, Text, Screenshot, Compare, log
 import sys
 import os
 sys.path.append(os.getcwd())

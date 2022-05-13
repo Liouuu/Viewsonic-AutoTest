@@ -1,21 +1,27 @@
+import datetime
+import time
+import unittest
 from optparse import IndentedHelpFormatter
 from unittest import suite
+
 from appium import webdriver
-import unittest
-import time
-import datetime
+
 from Params.ElementParams import ElementParam
 from Params.SystemParams import SysParams
-from UnitFunction import LoginAndActive, logCheck, log
-from TestCases import EraserTestCase, LoginAndActivateTestCase, TextTestCase, StickyNoteTestCase, ShapeTestCase, HighlighterTestCase, MarkerTestCase, BackgroundTestCase, AdornerTestCase, TierTestCase, ImagesearchCase, ImportTestcase
+from TestCases import (AdornerTestCase, BackgroundTestCase, EraserTestCase,
+                       HighlighterTestCase, ImagesearchCase, ImportTestcase,
+                       LoginAndActivateTestCase, MarkerTestCase, ShapeTestCase,
+                       StickyNoteTestCase, TextTestCase, TierTestCase)
+from UnitFunction import LoginAndActive, log, logCheck
 
 
-'''Before you test MVBA, please check:
-1. Language setting should be English.
-2. Hide the date on canvas.
-3. Your system clipboard is empty.
-4. The resolution should be 1920x1080.(建議用我桌上平板)
-5. MVBA theme should be Education.'''
+# '''Before you test MVBA, please check:
+# 1. Language setting should be English.
+# 2. Hide the date on canvas.
+# 3. Your system clipboard is empty.
+# 4. The resolution should be 1920x1080.(建議用我桌上平板)
+# 5. MVBA theme should be Education.'''
+
 
 email = SysParams._Email
 password = SysParams._Password
@@ -519,6 +525,7 @@ if __name__ == '__main__':
     All_log = log.Logger(
         './Output/Logs/All'+datetime.datetime.now().strftime(' %Y%m%d %H_%M_%S') + '.log', level='error')
     runner = unittest.TextTestRunner(verbosity=2)
+
     #All_log.logger.error("PenTestCase: " + str(runner.run(suite_pen)))
     #All_log.logger.error("ShapesTestCase: " + str(runner.run(suite_Shapes)))
     #All_log.logger.error("EraserTestCase: " + str(runner.run(suite_eraser)))

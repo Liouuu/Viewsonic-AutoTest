@@ -1,3 +1,4 @@
+from xml.dom.minidom import Element
 from Params.ElementParams import ElementParam
 from UnitFunction import Canvas
 import time
@@ -45,7 +46,7 @@ def SelectPenBtn(self):
         EC.presence_of_element_located(
             (By.ID, ElementParam._Id_btnPen))
     )
-    self.driver.find_element_by_id('com.viewsonic.droid:id/btnPen').click()
+    self.driver.find_element_by_id(ElementParam._Id_btnPen).click()
 
 
 def SelectEraserBtn(self):

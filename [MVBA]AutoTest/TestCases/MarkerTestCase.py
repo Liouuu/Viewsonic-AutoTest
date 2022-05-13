@@ -8,6 +8,7 @@ sys.path.append(os.getcwd())
 
 Swipe_pen = [[929, 200], [764, 315], [741, 507], [845, 672],
              [991, 695], [1037, 564], [914, 484], [756, 534]]
+
 marker_log = log.Logger(
     './Output/Logs/Marker '+datetime.datetime.now().strftime(" %Y-%m-%d_%H_%M_%S") + '.log', level='info')
 
@@ -55,7 +56,7 @@ def Case1_1(self):
         marker_log.logger.info("Case 1-1 Finish")
     except (SystemExit, KeyboardInterrupt):
         raise
-    except Exception:
+    except:
         marker_log.logger.error("系統運行錯誤，請重試", exc_info=True)
         marker_log.logger.info("Finish")
 
