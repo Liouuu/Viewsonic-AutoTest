@@ -1,3 +1,5 @@
+from tkinter import SEL_FIRST
+from turtle import width
 from openpyxl.drawing.image import Image
 from Params. SystemParams import FileExt
 from openpyxl import *
@@ -40,7 +42,6 @@ class LibExcel:
         if(sheetName in self.__workbook.sheetnames):
             self.__workbook.active = self.__workbook.get_sheet_by_name(
                 sheetName)
-
         else:
             self.__workbook.create_sheet(sheetName, sheetIdx)
             self.__workbook.active = sheetIdx
@@ -53,6 +54,8 @@ class LibExcel:
                     if(colunmValue != '' or isWriteEmpty):
                         sheet.cell(rowIdx, columnIdx, colunmValue)
                 elif (isinstance(colunmValue, Image)):
+                    # 自動設定行高
+                    sheet.row_dimensions[rowIdx].height = colunmValue.height*3/4
                     # Ascii取大寫英文字母欄位
                     sheet.add_image(colunmValue, chr(columnIdx+64)+str(rowIdx))
                 columnIdx += 1
@@ -61,15 +64,12 @@ class LibExcel:
     def AutoSize(self):
         sheets = self.__workbook.sheetnames
         for sheetName in sheets:
-            widths = []
-            heights = []
             sheet = self.__workbook[sheetName]
+            self.__InitSize(sheet)
             for row in sheet.rows:
                 for cell in row:
-                    self.__GetMaxColumnSize(cell, *widths)
-                    self.__GetMaxRowSize(cell, heights)
-            self.__SetMaxColumnSize()
-            self.__SetMaxRowSize()
+                    self.__SetMaxColumnSize(sheet, cell)
+                    self.__SetMaxRowSize(sheet, cell)
 
     def Save(self):
         self.__workbook.save()
@@ -78,24 +78,22 @@ class LibExcel:
     def SaveAs(self):
         self.__workbook.save(self.Path + "/" + self.fileName + FileExt._xlsx)
         self.__workbook.close()
-    # 獲取最大欄位寬
 
-    def __GetMaxColumnSize(cell, *widths):
-        if cell.value:
-            widths[cell.column] = max(widths.get(
-                cell.column, 0), len(str(cell.value).encode('utf-8')))
-    # 獲取最大行高
-
-    def __GetMaxRowSize(cell):
-        ""
+    def __InitSize(self, sheet):
+        for column in sheet.columns:
+            sheet.column_dimensions[column[0].column_letter].width = 0
+        # for row in sheet.rows:
+        #     sheet.row_dimensions[row[0].row].height = 0
 
     # 設置最大欄位寬
-
-    def __SetMaxColumnSize(sheet):
-        for col, value in dims.items():
-            sheet.column_dimensions[get_column_letter(col)].width = value
+    def __SetMaxColumnSize(self, sheet, cell):
+        if cell.value:
+            sheet.column_dimensions[cell.column_letter].width = max(
+                sheet.column_dimensions[cell.column_letter].width, len(str(cell.value).encode('big5'))*1.5)
     # 設置最大行高
 
-    def __SetMaxRowSize(sheet):
-        for col, value in dims.items(sheet):
-            sheet.column_dimensions[get_column_letter(col)].width = value
+    def __SetMaxRowSize(self,  sheet, cell):
+        ""
+        # if cell.value:
+        #     sheet.row_dimensions[cell.row].height = max(
+        #         sheet.row_dimensions[cell.row].height, len(str(cell.value).encode('big5'))*1.2)
