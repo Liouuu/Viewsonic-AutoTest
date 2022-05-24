@@ -4,6 +4,8 @@ class c_sysPath:
     @property
     def _LogPath(self): return self.__OutputPath+"/Logs"
     @property
+    def _SrcPath(self): return self.__OutputPath+"/Srcs"
+    @property
     def _ExcelPath(self): return self.__OutputPath+"/Excels"
 
 

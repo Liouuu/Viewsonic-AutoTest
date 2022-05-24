@@ -17,8 +17,6 @@ class c_LogParam:
     def _Result(self): return "結果"
     @property
     def _Picture(self): return "圖片"
-    @property
-    def _Picture(self): return "等級"
     # @property (記錄執行程式的Stack，未來再考慮)
     # def _Stack(self): return "堆疊"
 
