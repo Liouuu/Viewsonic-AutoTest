@@ -5,7 +5,7 @@ from openpyxl import load_workbook
 from Params.ElementParams import ElementParam
 from Params.SystemParams import ImgPath
 from Library.LibLogObj import LogPackage
-from Library import LibData
+from Library.LibData import LibData
 from openpyxl.drawing.image import Image
 from UnitFunction import Canvas, Text, Screenshot, Compare, log
 import sys
