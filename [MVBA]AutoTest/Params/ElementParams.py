@@ -326,6 +326,16 @@ class c_ElementParam:
     def _Id_radioShapePen(self): return self._Site+":id/radioShapePen"
     @property
     def _Id_radioMagicLinePen(self): return self._Site+":id/radioMagicLinePen"
+    @property
+    def _Id_checkBold(self): return self._Site+":id/checkBold"
+    @property
+    def _Id_checkItalic(self): return self._Site+":id/checkItalic"
+    @property
+    def _Id_checkUnderline(self): return self._Site+":id/checkUnderline"
+    @property
+    def _Id_checkbuttonColor(self): return self._Site+":id/checkbuttonColor"
+    @property
+    def _Id_checkbuttonColorBg(self): return self._Site+":id/checkbuttonColorBg"
 
 
 ElementParam = c_ElementParam()
