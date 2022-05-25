@@ -11,6 +11,8 @@ from UnitFunction import Canvas, Text, Screenshot, Compare, log
 import sys
 import os
 sys.path.append(os.getcwd())
+Text_log = log.Logger(
+    './Output/Logs/Tier'+datetime.datetime.now().strftime(' %Y%m%d %H_%M_%S') + '.log', level='info')
 textImg_path = ImgPath._TextImgPath
 Case1_Editor_img = Image(LibData.StringMerge("/",textImg_path,"Case1_Editor.png"))
 Case1_Canvas_img = Image(textImg_path+"/Case1_Canvas.png")
@@ -23,10 +25,9 @@ step_img = Image("./Cache images/cache_image.png")
 LogPack = LogPackage("TextResult", srcFileName="Text")
 
 def testCase1(self):
+    sheetName = "TextCase1"
+    LogPack.NewLogSheet(sheetName)
     try:
-        sheetName = "TextCase1"
-        
-        LogPack.NewLogSheet(sheetName)
         #Text_log.logger.info("Start TextCase1:在畫布建立文字編輯器，然後更改Font跟Size並套用Bold，接著輸入文字。")
         time.sleep(5)
         textIcon_id = ElementParam._Id_btnTypingText
@@ -84,15 +85,15 @@ def testCase1(self):
     except (SystemExit, KeyboardInterrupt):
         raise
     except Exception:
-        LogPack.AddLogRow(sheetName, "執行貼圖", "系統運行錯誤，請看log日誌")
-        #Text_log.logger.error("系統運行錯誤，請重試", exc_info=True)
-        #Text_log.logger.info("Finish")
+        #LogPack.AddLogRow(sheetName, "執行貼圖", "系統運行錯誤，請看log日誌")
+        Text_log.logger.error("系統運行錯誤，請重試", exc_info=True)
+        Text_log.logger.info("Finish")
 
 
 def testCase2(self):
+    sheetName = "TextCase2"     
+    LogPack.NewLogSheet(sheetName)
     try:
-        sheetName = "TextCase2"     
-        LogPack.NewLogSheet(sheetName)
         #Text_log.logger.info("Start TextCase2:在畫布建立文字編輯器，然後更改Font跟Size並套用Italic，接著更改文字顏色(“Advanced”)以及底色(“STANDARD”)，再輸入文字。")
         time.sleep(5)
         textIcon_id = ElementParam._Id_btnTypingText
@@ -158,15 +159,15 @@ def testCase2(self):
     except (SystemExit, KeyboardInterrupt):
         raise
     except Exception:
-        LogPack.AddLogRow(sheetName, "執行貼圖", "系統運行錯誤，請看log日誌")
-        #Text_log.logger.error("系統運行錯誤，請重試", exc_info=True)
-        #Text_log.logger.info("Finish")
+        #LogPack.AddLogRow(sheetName, "執行貼圖", "系統運行錯誤，請看log日誌")
+        Text_log.logger.error("系統運行錯誤，請重試", exc_info=True)
+        Text_log.logger.info("Finish")
 
 
 def testCase3(self):
+    sheetName = "TextCase3"
+    LogPack.NewLogSheet(sheetName)
     try:
-        sheetName = "TextCase3"
-        LogPack.NewLogSheet(sheetName)
         #Text_log.logger.info("Start TextCase3:在畫布建立文字編輯器，然後更改Font跟Size並套用UnderLine，接著更改文字顏色(“STANDARD”)以及底色(“Advanced”)，再輸入文字。")
         time.sleep(5)
         textIcon_id = ElementParam._Id_btnTypingText
@@ -232,6 +233,7 @@ def testCase3(self):
     except (SystemExit, KeyboardInterrupt):
         raise
     except Exception:
-        LogPack.AddLogRow(sheetName, "執行貼圖", "系統運行錯誤，請看log日誌")
-        #Text_log.logger.error("系統運行錯誤，請重試", exc_info=True)
-        #Text_log.logger.info("Finish")
+        #LogPack.AddLogRow(sheetName, "執行貼圖", "系統運行錯誤，請看log日誌")
+        Text_log.logger.error("系統運行錯誤，請重試", exc_info=True)
+        Text_log.logger.info("Finish")
+LogPack.CreateLog()

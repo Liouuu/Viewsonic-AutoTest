@@ -27,7 +27,7 @@ class LogPackage:
 
 # region Public
     def CreateLog(self):
-        if self.__LogType is LibParams.LogType.excel:
+        if self.__LogType == LibParams.LogType.excel:
             self.__CreateExcelLog()
         else:
             pass
