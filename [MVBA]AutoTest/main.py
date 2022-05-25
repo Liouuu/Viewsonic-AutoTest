@@ -40,6 +40,9 @@ class NoActivateTestCase(unittest.TestCase):
         self.driver = webdriver.Remote(
             'http://localhost:4723/wd/hub', desired_caps)
 
+        self.driver.find_element_by_id("").screenshot()
+
+
     def test_TierCase_NoActivate(self):
         TierTestCase.NoActivateCase(self)
 
@@ -389,8 +392,8 @@ class MyTestCase(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    logCheck.logAmountCheck()
-    logCheck.excelAmountCheck()
+    #ogCheck.logAmountCheck()
+    #logCheck.excelAmountCheck()
 
     suite_login_and_activate = unittest.TestSuite()
     suite_login_and_activate.addTest(MyTestCase("test_Activate"))

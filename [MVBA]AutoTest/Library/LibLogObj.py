@@ -18,11 +18,10 @@ class LogPackage:
         self.__LogType = logType
 
     def CreateLog(self):
-        match self.__LogType:
-            case LibParams.LogType.excel:
-                self.__CreateExcelLog()
-            case _:
-                pass
+        if self.__LogType==LibParams.LogType.excel:
+            self.__CreateExcelLog()
+        else:
+            pass
 
     def NewLogSheet(self, caseName):
         logList = []
