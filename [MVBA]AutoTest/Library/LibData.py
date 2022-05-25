@@ -5,7 +5,7 @@ class LibData:
         for param in params:
             if(result and LibData.__LastExist(merge, result)):
                 result = result+merge
-            result = result+param
+            result = result+str(param)
         return result
 
     @staticmethod

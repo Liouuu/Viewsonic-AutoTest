@@ -1,18 +1,17 @@
 import datetime
 import time
 import unittest
-from optparse import IndentedHelpFormatter
-from unittest import suite
 
 from appium import webdriver
+from Library.LibWebDriver import LibWebDriver
 
-from Params.ElementParams import ElementParam
+from Params.ElementParams import ElementParam, ElementType
 from Params.SystemParams import SysParams
 from TestCases import (AdornerTestCase, BackgroundTestCase, EraserTestCase,
                        HighlighterTestCase, ImagesearchCase, ImportTestcase,
                        LoginAndActivateTestCase, MarkerTestCase, ShapeTestCase,
                        StickyNoteTestCase, TextTestCase, TierTestCase)
-from UnitFunction import LoginAndActive, log, logCheck
+from UnitFunction import log, logCheck
 
 
 # '''Before you test MVBA, please check:

@@ -1,7 +1,6 @@
 from Library.LibData import LibData
 from Library.LibLogObj import LogPackage
 from openpyxl.drawing.image import Image
-
 strval = LibData.StringMerge("/", "test1/", "test2", "test3")
 
 

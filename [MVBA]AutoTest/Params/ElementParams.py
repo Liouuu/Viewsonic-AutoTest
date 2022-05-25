@@ -1,3 +1,6 @@
+from enum import Enum
+
+
 class c_ElementParam:
     @property
     def _Site(self): return "com.viewsonic.droid"
@@ -334,8 +337,15 @@ class c_ElementParam:
     def _Id_checkUnderline(self): return self._Site+":id/checkUnderline"
     @property
     def _Id_checkbuttonColor(self): return self._Site+":id/checkbuttonColor"
+
     @property
-    def _Id_checkbuttonColorBg(self): return self._Site+":id/checkbuttonColorBg"
+    def _Id_checkbuttonColorBg(
+        self): return self._Site+":id/checkbuttonColorBg"
 
 
 ElementParam = c_ElementParam()
+
+
+class ElementType(Enum):
+    XPath = 0
+    Id = 1

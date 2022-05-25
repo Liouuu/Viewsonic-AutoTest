@@ -8,22 +8,28 @@ import os
 
 
 class LibExcel:
+    """Excel幫助類"""
+# region Property
     __workbook = Workbook
+# endregion
 
+# region Construct
     def __init__(self, path, name):
         self.Path = path
         self.fileName = name
+# endregion
 
-    def Createfile(self, isCreateNew=False):
+# region Protected
+    def _Createfile(self, isCreateNew=False):
         if os.path.isfile(self.Path + self.fileName):
             if isCreateNew:
                 '覆蓋'
             else:
-                self.__workbook = self.Openfile()
+                self.__workbook = self._Openfile()
         else:
             self.__workbook = Workbook()
 
-    def Openfile(self, srcPath, srcFileName):
+    def _Openfile(self, srcPath, srcFileName):
         if(not os.path.isdir(srcPath)):
             "報錯：找不到資料夾"
             return
@@ -32,13 +38,13 @@ class LibExcel:
             return
         self.__workbook = load_workbook(srcPath+'/'+srcFileName)
 
-    def WriteDatas(self, sheets=[], isWriteEmpty=False):
+    def _WriteDatas(self, sheets=[], isWriteEmpty=False):
         idx = 0
         for table in sheets:
-            self.WriteData(idx, table, sheets[table], isWriteEmpty)
+            self._WriteData(idx, table, sheets[table], isWriteEmpty)
             idx += 1
 
-    def WriteData(self, sheetIdx, sheetName, table=[], isWriteEmpty=False):
+    def _WriteData(self, sheetIdx, sheetName, table=[], isWriteEmpty=False):
         if(sheetName in self.__workbook.sheetnames):
             self.__workbook.active = self.__workbook.get_sheet_by_name(
                 sheetName)
@@ -56,29 +62,34 @@ class LibExcel:
                 elif (isinstance(colunmValue, Image)):
                     # 自動設定行高
                     sheet.row_dimensions[rowIdx].height = colunmValue.height*3/4
+                    if colunmValue.width*3/20 > sheet.column_dimensions[chr(columnIdx+64)].width:
+                        sheet.column_dimensions[chr(
+                            columnIdx+64)].width = colunmValue.width*3/20
                     # Ascii取大寫英文字母欄位
                     sheet.add_image(colunmValue, chr(columnIdx+64)+str(rowIdx))
                 columnIdx += 1
             rowIdx += 1
 
-    def AutoSize(self):
+    def _AutoSize(self):
         sheets = self.__workbook.sheetnames
         for sheetName in sheets:
             sheet = self.__workbook[sheetName]
-            self.__InitSize(sheet)
+           # self.__InitSize(sheet)
             for row in sheet.rows:
                 for cell in row:
                     self.__SetMaxColumnSize(sheet, cell)
                     self.__SetMaxRowSize(sheet, cell)
 
-    def Save(self):
+    def _Save(self):
         self.__workbook.save()
         self.__workbook.close()
 
-    def SaveAs(self):
+    def _SaveAs(self):
         self.__workbook.save(self.Path + "/" + self.fileName + FileExt._xlsx)
         self.__workbook.close()
+# endregion
 
+# region Private
     def __InitSize(self, sheet):
         for column in sheet.columns:
             sheet.column_dimensions[column[0].column_letter].width = 0
@@ -97,3 +108,4 @@ class LibExcel:
         # if cell.value:
         #     sheet.row_dimensions[cell.row].height = max(
         #         sheet.row_dimensions[cell.row].height, len(str(cell.value).encode('big5'))*1.2)
+# endregion
