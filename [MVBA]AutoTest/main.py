@@ -1,18 +1,13 @@
 import datetime
 import time
 import unittest
-
-from appium import webdriver
 from Library.LibWebDriver import LibWebDriver
-
-from Params.ElementParams import ElementParam, ElementType
 from Params.SystemParams import SysParams
 from TestCases import (AdornerTestCase, BackgroundTestCase, EraserTestCase,
                        HighlighterTestCase, ImagesearchCase, ImportTestcase,
                        LoginAndActivateTestCase, MarkerTestCase, ShapeTestCase,
                        StickyNoteTestCase, TextTestCase, TierTestCase)
-from UnitFunction import log, logCheck
-
+from UnitFunction import log
 
 # '''Before you test MVBA, please check:
 # 1. Language setting should be English.
@@ -22,25 +17,9 @@ from UnitFunction import log, logCheck
 # 5. MVBA theme should be Education.'''
 
 
-email = SysParams._Email
-password = SysParams._Password
-
-
 class NoActivateTestCase(unittest.TestCase):
     def setUp(self):
-        # super().setUp()
-        desired_caps = {}
-        desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '10'
-        desired_caps['deviceName'] = '172.21.13.194:5555'
-        desired_caps['appPackage'] = ElementParam._Site
-        desired_caps['noReset'] = False
-        desired_caps['appActivity'] = '.MainActivity'
-        self.driver = webdriver.Remote(
-            'http://localhost:4723/wd/hub', desired_caps)
-
-        self.driver.find_element_by_id("").screenshot()
-
+        self.Driver = LibWebDriver(isActivate=False)
 
     def test_TierCase_NoActivate(self):
         TierTestCase.NoActivateCase(self)
@@ -53,25 +32,14 @@ class NoActivateTestCase(unittest.TestCase):
 class MyTestCase(unittest.TestCase):
 
     def setUp(self):
-        # super().setUp()
-        desired_caps = {}
-        desired_caps["automationName"] = 'UiAutomator2'
-        desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '10'
-        desired_caps['deviceName'] = '172.21.13.194:5555'
-        desired_caps['appPackage'] = ElementParam._Site
-        desired_caps['noReset'] = True
-        desired_caps['resetKeyboard'] = True
-        desired_caps['unicodeKeyboard'] = True
-        desired_caps['appActivity'] = '.MainActivity'
-        self.driver = webdriver.Remote(
-            'http://localhost:4723/wd/hub', desired_caps)
+        self.Driver = LibWebDriver(isActivate=True)
 
     def test_Activate(self):
         LoginAndActivateTestCase.Case1(self, 'david.wz.jie@viewsonic.com')
 
     def test_NormalLogin(self):
-        LoginAndActivateTestCase.Case2(self, email, password)
+        LoginAndActivateTestCase.Case2(
+            self, SysParams._Email, SysParams._Password)
 
     def test_MarkerCase1_1(self):
         MarkerTestCase.Case1_1(self)
@@ -391,8 +359,8 @@ class MyTestCase(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    #ogCheck.logAmountCheck()
-    #logCheck.excelAmountCheck()
+    # ogCheck.logAmountCheck()
+    # logCheck.excelAmountCheck()
 
     suite_login_and_activate = unittest.TestSuite()
     suite_login_and_activate.addTest(MyTestCase("test_Activate"))
@@ -528,13 +496,13 @@ if __name__ == '__main__':
         './Output/Logs/All'+datetime.datetime.now().strftime(' %Y%m%d %H_%M_%S') + '.log', level='error')
     runner = unittest.TextTestRunner(verbosity=2)
 
-    #All_log.logger.error("PenTestCase: " + str(runner.run(suite_pen)))
-    #All_log.logger.error("ShapesTestCase: " + str(runner.run(suite_Shapes)))
-    #All_log.logger.error("EraserTestCase: " + str(runner.run(suite_eraser)))
+    # All_log.logger.error("PenTestCase: " + str(runner.run(suite_pen)))
+    # All_log.logger.error("ShapesTestCase: " + str(runner.run(suite_Shapes)))
+    # All_log.logger.error("EraserTestCase: " + str(runner.run(suite_eraser)))
     All_log.logger.error("TextTestCase: " + str(runner.run(suite_text)))
-    #All_log.logger.error("StickyNoteTestCase: " + str(runner.run(suite_StickyNote)))
-    #All_log.logger.error("BackgroundTestCase: " + str(runner.run(suite_background)))
-    #All_log.logger.error("AdornerTestCase: " + str(runner.run(suite_Adorner)))
-    #All_log.logger.error("ImageSearchTestCase: " + str(runner.run(suite_ImageSearch)))
-    #All_log.logger.error("ImportTestCase: " + str(runner.run(suite_Import)))
-    #All_log.logger.error("TierTestCase: " + str(runner.run(suite_Tier)))
+    # All_log.logger.error("StickyNoteTestCase: " + str(runner.run(suite_StickyNote)))
+    # All_log.logger.error("BackgroundTestCase: " + str(runner.run(suite_background)))
+    # All_log.logger.error("AdornerTestCase: " + str(runner.run(suite_Adorner)))
+    # All_log.logger.error("ImageSearchTestCase: " + str(runner.run(suite_ImageSearch)))
+    # All_log.logger.error("ImportTestCase: " + str(runner.run(suite_Import)))
+    # All_log.logger.error("TierTestCase: " + str(runner.run(suite_Tier)))

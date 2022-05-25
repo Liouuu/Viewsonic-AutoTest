@@ -1,6 +1,7 @@
+from mimetypes import init
 from appium import webdriver
 from openpyxl.drawing.image import Image
-from ElementParams import ElementType
+from ElementParams import ElementParam, ElementType
 
 
 class LibWebDriver:
@@ -11,8 +12,24 @@ class LibWebDriver:
         self.Driver = driver
 
     def __init__(self, desired_caps: dict):
-        self.Driver = webdriver.Remote(
-            'http://localhost:4723/wd/hub', desired_caps)
+        self.__init__(webdriver.Remote(
+            'http://localhost:4723/wd/hub', desired_caps))
+
+    def __init__(self, isActivate: bool):
+        desired_caps = {}
+        desired_caps['platformName'] = 'Android'
+        desired_caps['platformVersion'] = '10'
+        desired_caps['deviceName'] = '172.21.13.194:5555'
+        desired_caps['appPackage'] = ElementParam._Site
+        desired_caps['appActivity'] = '.MainActivity'
+        if(isActivate):
+            desired_caps["automationName"] = 'UiAutomator2'
+            desired_caps['noReset'] = True
+            desired_caps['resetKeyboard'] = True
+            desired_caps['unicodeKeyboard'] = True
+        else:
+            desired_caps['noReset'] = False
+        self.__init__(desired_caps)
 # endregion
 
 # region Public
