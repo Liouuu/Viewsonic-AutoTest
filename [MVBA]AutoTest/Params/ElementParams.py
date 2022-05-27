@@ -344,8 +344,3 @@ class c_ElementParam:
 
 
 ElementParam = c_ElementParam()
-
-
-class ElementType(Enum):
-    XPath = 0
-    Id = 1

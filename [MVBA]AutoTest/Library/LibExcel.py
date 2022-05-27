@@ -10,13 +10,20 @@ import os
 class LibExcel:
     """Excel幫助類"""
 # region Property
-    __workbook = Workbook
+    __workbook: Workbook
+
 # endregion
 
+
 # region Construct
+
     def __init__(self, path, name):
         self.Path = path
         self.fileName = name
+
+    # region VirtualFunction
+        self._AfterSetData = None
+    # endregion
 # endregion
 
 # region Protected
@@ -60,13 +67,11 @@ class LibExcel:
                     if(colunmValue != '' or isWriteEmpty):
                         sheet.cell(rowIdx, columnIdx, colunmValue)
                 elif (isinstance(colunmValue, Image)):
-                    # 自動設定行高
-                    sheet.row_dimensions[rowIdx].height = colunmValue.height*3/4
-                    if colunmValue.width*3/20 > sheet.column_dimensions[chr(columnIdx+64)].width:
-                        sheet.column_dimensions[chr(
-                            columnIdx+64)].width = colunmValue.width*3/20
                     # Ascii取大寫英文字母欄位
                     sheet.add_image(colunmValue, chr(columnIdx+64)+str(rowIdx))
+                if(not self._AfterSetData is None):
+                    self._AfterSetData(sheet.row_dimensions[rowIdx], sheet.column_dimensions[chr(
+                        columnIdx+64)], colunmValue)
                 columnIdx += 1
             rowIdx += 1
 

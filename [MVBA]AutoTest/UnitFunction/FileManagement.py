@@ -8,9 +8,9 @@ from Params.ElementParams import ElementParam
 
 def OpenFileManagement(self):
     WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.ID, "ElementParam._Id_btnFile"))
+        EC.presence_of_element_located((By.ID, ElementParam._Id_btnFile))
     )
-    self.driver.find_element_by_id("ElementParam._Id_btnFile").click()
+    self.driver.find_element_by_id(ElementParam._Id_btnFile).click()
 
 
 def CloseFileManagement(self):

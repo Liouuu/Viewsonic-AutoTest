@@ -5,46 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from Params.ElementParams import ElementParam
 
 
-def buttonDelete(self):
-    WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located((By.ID, ElementParam._Id_buttonDelete))
-    )
-    self.driver.find_element_by_id(ElementParam._Id_buttonDelete).click()
-
-
-def buttonLocked(self):
-    WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located(
-            (By.ID, ElementParam._Id_buttonLocked))
-    )
-    self.driver.find_element_by_id(
-        ElementParam._Id_buttonLocked).click()
-
-
-def buttonHyperlink(self):
-    WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located(
-            (By.ID, ElementParam._Id_buttonHyperlink))
-    )
-    self.driver.find_element_by_id(
-        ElementParam._Id_buttonHyperlink).click()
-
-
-def buttonCopy(self):
-    WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located(
-            (By.ID, ElementParam._Id_buttonCopy))
-    )
-    self.driver.find_element_by_id(ElementParam._Id_buttonCopy).click()
-
-
-def buttonCut(self):
-    WebDriverWait(self.driver, 10).until(
-        EC.presence_of_element_located(
-            (By.ID, ElementParam.buttonCut))
-    )
-    self.driver.find_element_by_id(ElementParam.buttonCut).click()
-
+# self.Driver.ElementClick(sheetName,action,ElementParam._Id_buttonCopy,By.ID)
 
 def buttonReplicate(self):
     WebDriverWait(self.driver, 10).until(
