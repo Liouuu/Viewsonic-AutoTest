@@ -2,12 +2,15 @@ import datetime
 import time
 from openpyxl import Workbook
 from openpyxl import load_workbook
+
+from Library import Compare
+from . import Canva
 from Params.ElementParams import ElementParam
 from Params.SystemParams import ImgPath
 from Library.LibLogHelper import LogPackage
 from Library.LibData import LibData
 from openpyxl.drawing.image import Image
-from UnitFunction import Canvas, Text, Screenshot, Compare, log
+from UnitFunction import Text, Screenshot, log
 import sys
 import os
 sys.path.append(os.getcwd())
@@ -39,8 +42,8 @@ def testCase1(self):
             sheetName, "點擊Tool bar上的Text icon", "執行結果", step_img)
         Text.SelectTextBtn(self)
         Text.SelectTextBtn(self)
-        Canvas.Tap(self, 900, 250)
-        Canvas.Tap(self, 900, 250)
+        Canva.Tap(self, 900, 250)
+        Canva.Tap(self, 900, 250)
         Screenshot.screenshotTextEditor(self, step_img)
         LogPack.AddUnitLog(sheetName, "點擊畫布建立文字編輯框", "執行結果", step_img)
         Text.ChangeFont(self, 3)
@@ -106,8 +109,8 @@ def testCase2(self):
             sheetName, "點擊Tool bar上的Text icon", "執行結果", step_img)
         Text.SelectTextBtn(self)
         Text.SelectTextBtn(self)
-        Canvas.Tap(self, 900, 500)
-        Canvas.Tap(self, 900, 500)
+        Canva.Tap(self, 900, 500)
+        Canva.Tap(self, 900, 500)
         Screenshot.screenshotTextEditor(self, step_img)
         LogPack.AddUnitLog(sheetName, "點擊畫布建立文字編輯框", "執行結果", step_img)
         Text.ChangeFont(self, 6)
@@ -183,8 +186,8 @@ def testCase3(self):
             sheetName, "點擊Tool bar上的Text icon", "執行結果", step_img)
         Text.SelectTextBtn(self)
         Text.SelectTextBtn(self)
-        Canvas.Tap(self, 900, 750)
-        Canvas.Tap(self, 900, 750)
+        Canva.Tap(self, 900, 750)
+        Canva.Tap(self, 900, 750)
         Screenshot.screenshotTextEditor(self, step_img)
         LogPack.AddUnitLog(sheetName, "點擊畫布建立文字編輯框", "執行結果", step_img)
         Text.ChangeFont(self, 9)

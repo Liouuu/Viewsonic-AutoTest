@@ -39,6 +39,19 @@ class UnitLogObj:
 
 class LogPackage:
     """Log包"""
+
+# region Property
+    @property
+    def SheetName(self): return self.__curSheetName
+    @SheetName.setter
+    def SheetName(self, value: str): self.__curSheetName = value
+
+    @property
+    def SubSheetName(self): return LibData.AddExtention(
+        self.SheetName, " Detail")
+
+
+# endregion
 # region Construct
 
     def __init__(self,  logName: str, srcFilePath=SysPath._SrcPath, srcFileName="", logPath=SysPath._ExcelPath,
@@ -62,6 +75,7 @@ class LogPackage:
 # endregion
 
 # region Public
+
     def CreateLog(self):
         """保存Log檔案
         """
@@ -72,34 +86,34 @@ class LogPackage:
 
     def NewLogSheet(self, sheetName, logObj):
         """新增Log表
-        :param str sheetName : 表名稱
+        :param str  : 表名稱
         """
         logList = []
         logList.append(logObj)
         self.__LogDict[sheetName] = logList
 
-    def AddCaseLog(self, sheetName, action, result: str = "", screenshot: Image = None):
+    def AddCaseLog(self, action, result: str = "", screenshot: Image = None):
         """插入Case步驟Log
-        :param str sheetName : 表名稱
+        :param str  : 表名稱
         :param str action : 執行的動作
         :param str  result : 執行結果
         :param Image screenshot : 圖片
         """
-        caseLoglist = list(self.__LogDict[sheetName])
+        if(not self.SheetName in self._LogPackage__LogDict.keys()):
+            self.NewLogSheet(self.SheetName, CaseLogObj())
+        caseLoglist: list = self.__LogDict[self.SheetName]
         caseLoglist.append(
             CaseLogObj(action=action, result=result, screenshot=screenshot))
-        self.__LogDict[sheetName] = caseLoglist  # 確定下是否可以不用這句
 
-    def AddUnitLog(self, sheetName, step, action, *params):
+    def AddUnitLog(self, step, action, *params):
         """插入單元動作Log
         """
-        # 這邊先做默認所有的Unit表叫Detail
-        sheetName = LibData.AddExtention(sheetName, " Detail")
-        unitLoglist = list(self.__LogDict[sheetName])
+        if(not self.SubSheetName in self._LogPackage__LogDict.keys()):
+            self.NewLogSheet(self.SubSheetName, UnitLogObj())
+        unitLoglist: list = self.__LogDict[self.SubSheetName]
         if len(unitLoglist) > 1 and LibData.In(step, unitLoglist[len(unitLoglist)-1]):
             step = ""
-        unitLoglist.append(UnitLogObj(step, action, str(*params)))
-        self.__LogDict[sheetName] = unitLoglist  # 待確定是否可以不用這句
+        unitLoglist.append(UnitLogObj(step, action, "str(*params)"))
 # endregion
 
 # region Private

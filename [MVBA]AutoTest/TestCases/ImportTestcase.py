@@ -2,8 +2,10 @@
 import time
 import datetime
 from xml.dom.minidom import Element
+from . import UnitFunc
+from Library import Compare
 from Params.ElementParams import ElementParam
-from UnitFunction import LoginAndActive, MagicBox, FloatBar, ToolBar, Screenshot, Compare, log
+from UnitFunction import LoginAndActive, MagicBox, FloatBar, Screenshot, log
 import sys
 import os
 sys.path.append(os.getcwd())
@@ -23,7 +25,7 @@ def testImport(self, locate="Local"):
         for type in types:
             for i in range(3):  # 3 files each type
                 Import_log.logger.info("Click Pen icon")
-                ToolBar.SelectPenBtn(self)
+                UnitFunc.SelectPenBtn(self)
                 Import_log.logger.info("Open MagicBox")
                 MagicBox.OpenMagicBox(self)
                 if locate == "GoogleDrive":

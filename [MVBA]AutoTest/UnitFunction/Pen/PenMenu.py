@@ -9,7 +9,7 @@ def SelectPenBtn(self):
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located((By.ID, ElementParam._Id_btnPen))
     )
-    self.driver.find_element_by_id('com.viewsonic.droid:id/btnPen').click()
+    self.driver.find_element_by_id(ElementParam._Id_btnPen).click()
 
 
 def OpenPenMenu(self):

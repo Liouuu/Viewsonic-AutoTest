@@ -1,6 +1,9 @@
 import datetime
 import time
-from UnitFunction import Canvas, Screenshot, Compare, log
+
+from Library import Compare
+from . import Canva
+from UnitFunction import Screenshot, log
 from UnitFunction.Pen import Highlighter, PenMenu
 import sys
 import os
@@ -40,7 +43,7 @@ def Case1(self):
                    [1000, 650], [1000, 500], [850, 500]]
         highlighter_log.logger.info(
             "Draw: [[1000,350],[850,350],[850,650],[1000,650],[1000,500],[850,500]]")
-        Canvas.Swipe(self, my_draw)
+        Canva.Swipe(self, my_draw)
         highlighter_log.logger.info("Screenshot Canvas")
         Screenshot.screenshotCanvas(
             self, "./TestCases/Screenshots/Pen/Highlighter/Highliter Case 1_canvas.png")

@@ -1,13 +1,14 @@
 import datetime
 import time
 import unittest
+from Library import LibData
 from Library.LibWebDriver import LibWebDriver
 from Params.SystemParams import SysParams
-from TestCases import (AdornerTestCase, BackgroundTestCase, EraserTestCase,
-                       HighlighterTestCase, ImagesearchCase, ImportTestcase,
-                       LoginAndActivateTestCase, MarkerTestCase, ShapeTestCase,
-                       StickyNoteTestCase, TextTestCase, TierTestCase)
-from UnitFunction import log
+from TestCases import AdornerTestCase
+# , BackgroundTestCase, EraserTestCase,
+#                        HighlighterTestCase, ImagesearchCase, ImportTestcase,
+#                        LoginAndActivateTestCase, MarkerTestCase, ShapeTestCase,
+#                        StickyNoteTestCase, TextTestCase, TierTestCase)
 
 # '''Before you test MVBA, please check:
 # 1. Language setting should be English.
@@ -18,6 +19,15 @@ from UnitFunction import log
 
 
 class NoActivateTestCase(unittest.TestCase):
+
+    # LibData.LibData.DynamicExecClassFunction(
+    #     AdornerTestCase.AdornerTestCase.Pen.Case01_OpenAdornerMenu())
+
+    p = AdornerTestCase.AdornerTestCase()
+    # p.PenCase.Case01_OpenAdornerMenu()
+    p.PenCase.ExecCase()
+    p.PenCase.Log.CreateLog()
+
     def setUp(self):
         self.Driver = LibWebDriver(isActivate=False)
 

@@ -1,4 +1,6 @@
-from UnitFunction import Eraser, Canvas, FileManagement, FloatBar, Screenshot, Compare, log
+from Library import Compare
+from . import Canva
+from UnitFunction import Eraser, FileManagement, FloatBar, Screenshot, log
 import time
 import datetime
 import sys
@@ -208,16 +210,16 @@ def Case1to3(self):
         time.sleep(1)
         for page in regular_eraser_1to3:
             Eraser_log.logger.info("Erase object: page " + str(page))
-            Canvas.Tap(
+            Canva.Tap(
                 self, regular_eraser_1to3[page][0][0], regular_eraser_1to3[page][0][1])
             time.sleep(1)
-            Canvas.Tap(
+            Canva.Tap(
                 self, regular_eraser_1to3[page][1][0], regular_eraser_1to3[page][1][1])
             time.sleep(1)
-            Canvas.Tap(
+            Canva.Tap(
                 self, regular_eraser_1to3[page][2][0], regular_eraser_1to3[page][2][1])
             time.sleep(1)
-            Canvas.Tap(
+            Canva.Tap(
                 self, regular_eraser_1to3[page][3][0], regular_eraser_1to3[page][3][1])
             time.sleep(1)
             path = "./TestCases/Screenshots/Eraser/Eraser Case 1-3 page" + \
@@ -256,7 +258,7 @@ def Case2to1(self):
         Eraser.ChooseCircleEraser(self)
         for page in circle_eraser_2to1:
             Eraser_log.logger.info("Erase object: page " + str(page))
-            Canvas.Swipe(self, circle_eraser_2to1[page])
+            Canva.Swipe(self, circle_eraser_2to1[page])
             path = "./TestCases/Screenshots/Eraser/Eraser Case 2-1 page" + \
                 str(page) + ".png"
             sample_path = "./TestCases/Samples/Eraser/Eraser Case 2-1 page" + \
@@ -293,7 +295,7 @@ def Case2to2(self):
         Eraser.ChooseCircleEraser(self)
         for page in circle_eraser_2to2:
             Eraser_log.logger.info("Erase object: page " + str(page))
-            Canvas.Swipe(self, circle_eraser_2to2[page])
+            Canva.Swipe(self, circle_eraser_2to2[page])
             path = "./TestCases/Screenshots/Eraser/Eraser Case 2-2 page" + \
                 str(page) + ".png"
             sample_path = "./TestCases/Samples/Eraser/Eraser Case 2-2 page" + \
@@ -330,7 +332,7 @@ def Case2to3(self):
         Eraser.ChooseCircleEraser(self)
         for i in range(8):
             Eraser_log.logger.info("Erase object: page " + str(i+1))
-            Canvas.Swipe(self, circle_eraser_2to3)
+            Canva.Swipe(self, circle_eraser_2to3)
             path = "./TestCases/Screenshots/Eraser/Eraser Case 2-3 page" + \
                 str(i+1) + ".png"
             sample_path = "./TestCases/Samples/Eraser/Eraser Case 2-3 page" + \
@@ -348,7 +350,7 @@ def Case2to3(self):
             FloatBar.NextPage(self)
             time.sleep(1)
         Eraser_log.logger.info("Erase object: page " + str(9))
-        Canvas.Swipe(self, circle_eraser_2to3)
+        Canva.Swipe(self, circle_eraser_2to3)
         path = "./TestCases/Screenshots/Eraser/Eraser Case 2-3 page" + \
             str(9) + ".png"
         sample_path = "./TestCases/Samples/Eraser/Eraser Case 2-3 page" + \

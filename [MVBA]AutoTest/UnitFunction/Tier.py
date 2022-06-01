@@ -1,4 +1,5 @@
-from UnitFunction import MagicBox, StickyNote, FileManagement, Background, Canvas
+from . import Canva
+from UnitFunction import MagicBox, StickyNote, FileManagement, Background
 import time
 from UnitFunction.Pen import PenMenu
 from selenium.webdriver.support import expected_conditions as EC
@@ -179,7 +180,7 @@ def TryCaptureRectangle(self):
         ElementParam._Id_capture_menu_button_capture_rectangle_capture).click()
     Toastresult = CheckToastlog(self)
     Alertresult = CheckAlertDialog(self)
-    Canvas.Select_Object(self, 626, 584, 879, 707)
+    Canva.Select_Object(self, 626, 584, 879, 707)
     CheckCapturePermission_message(self)
     CheckCaptureMenuClose(self)
     result = []
@@ -205,7 +206,7 @@ def TryRecord(self):
         self.driver.find_element_by_id(
             ElementParam._Id_capture_menu_buttonMenuClose).click()
     except:
-        Canvas.Tap(self, 1889, 607)
+        Canva.Tap(self, 1889, 607)
     result = []
     result.extend((Toastresult, Alertresult))
     return result
@@ -229,7 +230,7 @@ def TryStream(self):
         self.driver.find_element_by_id(
             ElementParam._Id_capture_menu_buttonMenuClose).click()
     except:
-        Canvas.Tap(self, 1889, 607)
+        Canva.Tap(self, 1889, 607)
     result = []
     result.extend((Toastresult, Alertresult))
     return result

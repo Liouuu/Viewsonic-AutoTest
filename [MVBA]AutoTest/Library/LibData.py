@@ -1,4 +1,5 @@
 from inspect import getmembers, isfunction
+import inspect
 
 
 class LibData:

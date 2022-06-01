@@ -1,4 +1,6 @@
-from UnitFunction import ColorMenu, Canvas, Screenshot, Compare, log
+from Library import Compare
+from . import Canva
+from UnitFunction import ColorMenu, Screenshot, log
 from UnitFunction.Pen import Marker, PenMenu
 import datetime
 import time
@@ -44,7 +46,7 @@ def Case1_1(self):
         PenMenu.ClosePenMenu(self)
         time.sleep(2)
         marker_log.logger.info("在畫布畫出一個6")
-        Canvas.Swipe(self, Swipe_pen)
+        Canva.Swipe(self, Swipe_pen)
         marker_log.logger.info("將整個畫布截圖")
         Screenshot.screenshotCanvas(
             self, "./TestCases/Screenshots/Pen/Marker/Canvas_Marker1-1.png")
@@ -94,7 +96,7 @@ def Case1_2(self):
         PenMenu.ClosePenMenu(self)
         time.sleep(2)
         marker_log.logger.info("在畫布畫出一個6")
-        Canvas.Swipe(self, Swipe_pen)
+        Canva.Swipe(self, Swipe_pen)
         marker_log.logger.info("將整個畫布截圖")
         Screenshot.screenshotCanvas(
             self, "./TestCases/Screenshots/Pen/Marker/Canvas_Marker1-2.png")
@@ -123,7 +125,7 @@ def Case1_3(self):
         marker_log.logger.info("點擊”ADVANCED”")
         ColorMenu.ChangeColorByAdvanced(self, 0, 230, 230, 200)
         marker_log.logger.info("關閉”ADVANCED Menu”")
-        Canvas.Tap(self, 1800, 900)  # to close menu
+        Canva.Tap(self, 1800, 900)  # to close menu
         marker_log.logger.info("調整粗細bar")
         Marker.AdjustThickness(self, 16)
         marker_log.logger.info("調整透明bar")
@@ -143,7 +145,7 @@ def Case1_3(self):
         marker_log.logger.info("關閉Menu")
         PenMenu.ClosePenMenu(self)
         marker_log.logger.info("在畫布畫出一個6")
-        Canvas.Swipe(self, Swipe_pen)
+        Canva.Swipe(self, Swipe_pen)
         marker_log.logger.info("將整個畫布截圖")
         Screenshot.screenshotCanvas(
             self, "./TestCases/Screenshots/Pen/Marker/Canvas_Marker1-3.png")

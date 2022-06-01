@@ -1,6 +1,7 @@
 import datetime
 import time
-from UnitFunction import Background, FloatBar, Screenshot, Compare, Canvas, ColorMenu, log
+from Library import Compare
+from UnitFunction import Background, FloatBar, Screenshot, Canvas, ColorMenu, log
 import sys
 import os
 sys.path.append(os.getcwd())

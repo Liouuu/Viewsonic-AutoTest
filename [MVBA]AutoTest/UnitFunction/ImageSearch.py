@@ -7,7 +7,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from appium.webdriver.common.touch_action import TouchAction
 import time
-from UnitFunction import Canvas, Adorner, MagicBox
+from . import Canva
+from UnitFunction import Adorner, MagicBox
 from Params.ElementParams import ElementParam
 
 
@@ -62,7 +63,7 @@ def Importimage(self, type):
 def Checktype(self, type):
     try:
         MagicBox.CloseMagicBox(self)
-        Canvas.Select_Object(self, 77, 146, 315, 323)
+        Canva.Select_Object(self, 77, 146, 315, 323)
         time.sleep(10)
         Adorner.buttonSaveResource(self)
         MagicBox.SelectStorage(self)

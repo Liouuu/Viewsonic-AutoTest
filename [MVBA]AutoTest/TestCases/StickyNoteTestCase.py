@@ -2,8 +2,11 @@ from openpyxl import load_workbook
 from openpyxl import Workbook
 import datetime
 import time
+
+from Library import Compare
+from . import Canva
 from Library.LibExcel import LibExcel
-from UnitFunction import Canvas, StickyNote, MagicBox, Screenshot, Compare, log, LoginAndActive
+from UnitFunction import StickyNote, MagicBox, Screenshot, log, LoginAndActive
 import sys
 import os
 sys.path.append(os.getcwd())
@@ -63,7 +66,7 @@ def TestStickyNote_Pen(self):
         #sheet['B8'] = "Draw a 6"
         my_draw = [[1000, 350], [850, 350], [850, 650],
                    [1000, 650], [1000, 500], [850, 500]]
-        Canvas.Swipe(self, my_draw)
+        Canva.Swipe(self, my_draw)
         LibExcel.export_table(
             './Excels/StickyNote' + getTime, step=allStep[7])
         #sheet['B9'] = "Screenshot StickyNote Canvas"

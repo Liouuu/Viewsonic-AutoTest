@@ -7,6 +7,8 @@ from Library.LibLogHelper import LogPackage
 from openpyxl.drawing.image import Image
 from inspect import getmembers, isfunction
 
+from Library.LibWebDriver import LibWebDriver
+
 
 class TestClass:
     def functionA():
@@ -31,6 +33,10 @@ class TestClass:
 LibData.DynamicExecClassFunction(TestClass)
 print(callable(TestClass.functionA))
 
+
+driver: LibWebDriver = LibWebDriver.default(True, LogPackage("Adorner"))
+
+driver.Swipe()
 
 # sheetName = "TextCase1"
 # LogPack = LogPackage("TestFile", srcFileName="Text")

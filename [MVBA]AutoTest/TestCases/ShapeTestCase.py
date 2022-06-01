@@ -1,6 +1,9 @@
 import datetime
 import time
-from UnitFunction import ColorMenu, Shape, Canvas, Screenshot, Compare, FloatBar, log
+
+from Library import Compare
+from . import Canva
+from UnitFunction import ColorMenu, Shape, Screenshot, FloatBar, log
 import sys
 import os
 sys.path.append(os.getcwd())
@@ -75,13 +78,13 @@ def ShapesTest(self, num):  # Nomal Test ##
         finishMenu(self, num, menuPath)
         if num == 10:
             Shape_log.logger.info("Create 2D shape " + str(num))
-            Canvas.Swipe(self, [[300, 520], [300, 620]])
+            Canva.Swipe(self, [[300, 520], [300, 620]])
         elif num > 10:
             Shape_log.logger.info("Create 2D shape " + str(num))
-            Canvas.Swipe(self, [[300, 520], [300, 720]])
+            Canva.Swipe(self, [[300, 520], [300, 720]])
         else:
             Shape_log.logger.info("Create 2D shape " + str(num))
-            Canvas.Swipe(self, [[100, 320], [320, 590]])
+            Canva.Swipe(self, [[100, 320], [320, 590]])
         Shape_log.logger.info("Screenshot Canvas " + str(num))
         Screenshot.screenshotCanvas(self, canvasPath)
         Shape_log.logger.info("比對 Screenshot Menu " + str(num))
@@ -109,10 +112,10 @@ def ShapesTest(self, num):  # Nomal Test ##
         finishMenu(self, num, menuPath)
         if num > 10:
             Shape_log.logger.info("Create 2D shape " + str(num))
-            Canvas.Swipe(self, [[800, 520], [800, 720]])
+            Canva.Swipe(self, [[800, 520], [800, 720]])
         else:
             Shape_log.logger.info("Create 2D shape " + str(num))
-            Canvas.Swipe(self, [[800, 320], [1000, 590]])
+            Canva.Swipe(self, [[800, 320], [1000, 590]])
         Shape_log.logger.info("Screenshot Canvas " + str(num))
         Screenshot.screenshotCanvas(self, canvasPath)
         Shape_log.logger.info("比對 Screenshot Menu " + str(num))
@@ -136,18 +139,18 @@ def ShapesTest(self, num):  # Nomal Test ##
         runMenu(self, 30, 200, 8)
         Shape_log.logger.info("Change Color By Advanced")
         ColorMenu.ChangeColorByAdvanced(self, 81, 76, 132, 200)
-        Canvas.Tap(self, 1900, 90)  # (1900,90) to touch blank place
+        Canva.Tap(self, 1900, 90)  # (1900,90) to touch blank place
         time.sleep(2)
         finishMenu(self, num, menuPath)
         if num == 9:
             Shape_log.logger.info("Create 2D shape " + str(num))
-            Canvas.Swipe(self, [[1400, 520], [1400, 620]])
+            Canva.Swipe(self, [[1400, 520], [1400, 620]])
         elif num == 3 or num > 10:
             Shape_log.logger.info("Create 2D shape " + str(num))
-            Canvas.Swipe(self, [[1400, 520], [1400, 720]])
+            Canva.Swipe(self, [[1400, 520], [1400, 720]])
         else:
             Shape_log.logger.info("Create 2D shape " + str(num))
-            Canvas.Swipe(self, [[1400, 320], [1800, 590]])
+            Canva.Swipe(self, [[1400, 320], [1800, 590]])
         Shape_log.logger.info("Screenshot Canvas " + str(num))
         Screenshot.screenshotCanvas(self, canvasPath)
         Shape_log.logger.info("比對 Screenshot Menu " + str(num))
@@ -181,7 +184,7 @@ def shapes3DTest(self, num):
         runMenu(self, 15, 100, 2)
         finishMenu(self, num, menuPath)
         Shape_log.logger.info("Create 3D shape " + str(num))
-        Canvas.Swipe(self, [[100, 320], [320, 590]])
+        Canva.Swipe(self, [[100, 320], [320, 590]])
         Shape_log.logger.info("Screenshot Canvas " + str(num))
         Screenshot.screenshotCanvas(self, canvasPath)
         Shape_log.logger.info("比對 Screenshot Menu " + str(num))
@@ -208,7 +211,7 @@ def shapes3DTest(self, num):
         time.sleep(2)
         finishMenu(self, num, menuPath)
         Shape_log.logger.info("Create 3D shape " + str(num))
-        Canvas.Swipe(self, [[800, 320], [1000, 590]])
+        Canva.Swipe(self, [[800, 320], [1000, 590]])
         Shape_log.logger.info("Screenshot Canvas " + str(num))
         Screenshot.screenshotCanvas(self, canvasPath)
         Shape_log.logger.info("比對 Screenshot Menu " + str(num))
@@ -232,11 +235,11 @@ def shapes3DTest(self, num):
         runMenu(self, 30, 200, 8)
         Shape_log.logger.info("Change Color By Advanced")
         ColorMenu.ChangeColorByAdvanced(self, 81, 76, 132, 200)
-        Canvas.Tap(self, 1900, 90)  # (1900,90) to touch blank place
+        Canva.Tap(self, 1900, 90)  # (1900,90) to touch blank place
         time.sleep(2)
         finishMenu(self, num, menuPath)
         Shape_log.logger.info("Create 3D shape " + str(num))
-        Canvas.Swipe(self, [[1200, 320], [1800, 590]])
+        Canva.Swipe(self, [[1200, 320], [1800, 590]])
         Shape_log.logger.info("Screenshot Canvas " + str(num))
         Screenshot.screenshotCanvas(self, canvasPath)
         Shape_log.logger.info("比對 Screenshot Menu " + str(num))
@@ -271,7 +274,7 @@ def LineTest(self, num):
         runMenu(self, 15, 100, 2)
         finishMenu(self, num, menuPath)
         Shape_log.logger.info("Create Line " + str(num))
-        Canvas.Swipe(self, [[300, 300], [600, 600]])
+        Canva.Swipe(self, [[300, 300], [600, 600]])
         Shape_log.logger.info("Screenshot Canvas " + str(num))
         Screenshot.screenshotCanvas(self, canvasPath)
         Shape_log.logger.info("比對 Screenshot Menu " + str(num))
@@ -296,7 +299,7 @@ def LineTest(self, num):
         time.sleep(1)
         finishMenu(self, num, menuPath)
         Shape_log.logger.info("Create Line " + str(num))
-        Canvas.Swipe(self, [[800, 300], [1100, 600]])
+        Canva.Swipe(self, [[800, 300], [1100, 600]])
         Shape_log.logger.info("Screenshot Canvas " + str(num))
         Screenshot.screenshotCanvas(self, canvasPath)
         Shape_log.logger.info("比對 Screenshot Menu " + str(num))
@@ -318,11 +321,11 @@ def LineTest(self, num):
         runMenu(self, 30, 200, 8)
         Shape_log.logger.info("Change Color By Advanced")
         ColorMenu.ChangeColorByAdvanced(self, 81, 76, 132, 200)
-        Canvas.Tap(self, 1900, 90)  # (1900,90) to touch blank place
+        Canva.Tap(self, 1900, 90)  # (1900,90) to touch blank place
         time.sleep(1)
         finishMenu(self, num, menuPath)
         Shape_log.logger.info("Create Line " + str(num))
-        Canvas.Swipe(self, [[1300, 300], [1600, 600]])
+        Canva.Swipe(self, [[1300, 300], [1600, 600]])
         Shape_log.logger.info("Screenshot Canvas " + str(num))
         Screenshot.screenshotCanvas(self, canvasPath)
         Shape_log.logger.info("比對 Screenshot Menu " + str(num))

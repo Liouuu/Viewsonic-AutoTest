@@ -7,5 +7,5 @@
     "editor.wordWrap": "off",
     "diffEditor.wordWrap": "off",
     "editor.wordWrapColumn": 500,
-    // "editor.formatOnSave": false,
+    //"editor.formatOnSave": false,
 }
