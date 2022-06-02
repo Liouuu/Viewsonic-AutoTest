@@ -17,7 +17,7 @@ sys.path.append(os.getcwd())
 Text_log = log.Logger(
     './Output/Logs/Tier'+datetime.datetime.now().strftime(' %Y%m%d %H_%M_%S') + '.log', level='info')
 textImg_path = ImgPath._TextImgPath
-Case1_Editor_img = Image(LibData.StringMerge(
+Case1_Editor_img = Image(LibData.Merge(
     "/", textImg_path, "Case1_Editor.png"))
 Case1_Canvas_img = Image(textImg_path+"/Case1_Canvas.png")
 Case2_Editor_img = Image(textImg_path+"/Case2_Editor.png")
@@ -26,12 +26,12 @@ Case3_Editor_img = Image(textImg_path+"/Case3_Editor.png")
 Case3_Canvas_img = Image(textImg_path+"/Case3_Canvas.png")
 step_img = Image("./Cache images/cache_image.png")
 
-LogPack = LogPackage("TextResult", srcFileName="Text")
+LogPack = LogPackage("TextResult", srcFile="Text")
 
 
 def testCase1(self):
     sheetName = "TextCase1"
-    LogPack.NewLogSheet(sheetName)
+    LogPack.__NewLogSheet(sheetName)
     try:
         #Text_log.logger.info("Start TextCase1:在畫布建立文字編輯器，然後更改Font跟Size並套用Bold，接著輸入文字。")
         time.sleep(5)
@@ -98,7 +98,7 @@ def testCase1(self):
 
 def testCase2(self):
     sheetName = "TextCase2"
-    LogPack.NewLogSheet(sheetName)
+    LogPack.__NewLogSheet(sheetName)
     try:
         #Text_log.logger.info("Start TextCase2:在畫布建立文字編輯器，然後更改Font跟Size並套用Italic，接著更改文字顏色(“Advanced”)以及底色(“STANDARD”)，再輸入文字。")
         time.sleep(5)
@@ -175,7 +175,7 @@ def testCase2(self):
 
 def testCase3(self):
     sheetName = "TextCase3"
-    LogPack.NewLogSheet(sheetName)
+    LogPack.__NewLogSheet(sheetName)
     try:
         #Text_log.logger.info("Start TextCase3:在畫布建立文字編輯器，然後更改Font跟Size並套用UnderLine，接著更改文字顏色(“STANDARD”)以及底色(“Advanced”)，再輸入文字。")
         time.sleep(5)

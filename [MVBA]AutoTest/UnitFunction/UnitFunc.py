@@ -388,64 +388,65 @@ class ToolBar(FuncBase):
             """選擇橡皮擦工具"""
             action = "選擇橡皮擦工具"
             self.Log.AddCaseLog(action)
-            self.Driver.ElementClick(ElementParam._Id_btnEraser, By.ID)
+            self.Driver.ElementClick(action, ElementParam._Id_btnEraser, By.ID)
 
         def OpenEraserMenu(self):
             """開啟橡皮擦工具目錄"""
             action = "開啟橡皮擦工具目錄"
             self.Log.AddCaseLog(action)
-            self.Driver.ElementClcikMenu(ElementParam._Id_btnEraser, By.ID)
+            self.Driver.ElementClcikMenu(
+                action, ElementParam._Id_btnEraser, By.ID)
 
         def ChooseRegularEraser(self):
             """常規橡皮擦?"""
             action = ""
             self.Log.AddCaseLog(action)
-            self.Driver.ElementClick(ElementParam._Id_btnEraser, By.ID)
+            self.Driver.ElementClick(action, ElementParam._Id_btnEraser, By.ID)
 
         def ChooseCircleEraser(self):
             """圓圈橡皮擦?"""
             action = ""
             self.Log.AddCaseLog(action)
-            self.Driver.ElementClick(
-                ElementParam._Id_buttonEraseSelector, By.ID)
+            self.Driver.ElementClick(action,
+                                     ElementParam._Id_buttonEraseSelector, By.ID)
 
         def ClearCanvas(self):
             """清空畫布"""
             action = "清空畫布"
             self.Log.AddCaseLog(self. action)
-            self.Driver.ElementClick(
-                ElementParam._Id_buttonEraseAll, By.ID)
+            self.Driver.ElementClick(action,
+                                     ElementParam._Id_buttonEraseAll, By.ID)
 
         # in main bar after click eraser btn one time
         def ChooseRegularEraser_Sub(self):
             """常規橡皮擦2?"""
             action = ""
             self.Log.AddCaseLog(self. action)
-            self.Driver.ElementClick(
-                ElementParam._Id_btnSubEraserEraser, By.ID)
+            self.Driver.ElementClick(action,
+                                     ElementParam._Id_btnSubEraserEraser, By.ID)
 
         # in main bar after click eraser btn one time
         def ChooseCircleEraser_Sub(self):
             """選擇橡皮擦工具"""
             action = "選擇橡皮擦工具"
             self.Log.AddCaseLog(self. action)
-            self.Driver.ElementClick(
-                ElementParam._Id_btnSubEraserSelector, By.ID)
+            self.Driver.ElementClick(action,
+                                     ElementParam._Id_btnSubEraserSelector, By.ID)
 
         # in main bar after click eraser btn one time
         def ClearCanvas_Sub(self):
             """清空畫布"""
             action = "清空畫布"
             self.Log.AddCaseLog(self. action)
-            self.Driver.ElementClick(
-                ElementParam._Id_btnSubEraserEraserAll, By.ID)
+            self.Driver.ElementClick(action,
+                                     ElementParam._Id_btnSubEraserEraserAll, By.ID)
 
         def SetEraserSize(self, val: int):
             """調整橡皮擦大小"""
             action = "點擊”Lock button”"
             self.Log.AddCaseLog(action)
-            self.Driver.ElementSetValue(
-                action, val, ElementParam._Id_seekBar, By.ID)
+            self.Driver.ElementSetValue(action,
+                                        action, val, ElementParam._Id_seekBar, By.ID)
 
     class Shape(FuncBase):
         def ClickShape(self):
@@ -459,8 +460,8 @@ class ToolBar(FuncBase):
             """開啟多邊形工具目錄"""
             action = "開啟多邊形工具目錄"
             self.Log.AddCaseLog(action)
-            self.Driver.ElementClcikMenu(
-                action, ElementParam._Id_btnShape, By.ID)
+            self.Driver.ElementClcikMenu(action,
+                                         action, ElementParam._Id_btnShape, By.ID)
 
         # ShapeNum: 1 for shape, 2 for 3D shape, 3 for lines
         def SelectShape(self, ShapeNum):
@@ -518,8 +519,8 @@ class ToolBar(FuncBase):
             """調整粗細"""
             action = "調整多邊形粗細，值:{val}"
             self.Log.AddCaseLog(action)
-            self.Driver.ElementSetValue(
-                action, val, ElementParam._Id_seekBarWidth, By.ID)
+            self.Driver.ElementSetValue(action,
+                                        action, val, ElementParam._Id_seekBarWidth, By.ID)
 
     class Text(FuncBase):
         def SelectTextBtn(self):
@@ -770,19 +771,19 @@ class FloatBar(FuncBase):
         """資料夾"""
         action = "貼上"
         self.Log.AddCaseLog(action)
-        self.Driver.ElementClick(ElementParam._Id_btnPaste, By.ID)
+        self.Driver.ElementClick(action, ElementParam._Id_btnPaste, By.ID)
 
     def NextPage(self):
         """下一頁"""
         action = "下一頁"
         self.Log.AddCaseLog(action)
-        self.Driver.ElementClick(ElementParam._Id_btnPageNext, By.ID)
+        self.Driver.ElementClick(action, ElementParam._Id_btnPageNext, By.ID)
 
     def LastPage(self):
         """上一頁"""
         action = "上一頁"
         self.Log.AddCaseLog(action)
-        self.Driver.ElementClick(ElementParam._Id_btnPagePrev, By.ID)
+        self.Driver.ElementClick(action, ElementParam._Id_btnPagePrev, By.ID)
 
 
 class Background(FuncBase):
@@ -790,13 +791,13 @@ class Background(FuncBase):
         """開啟背景圖管理介面"""
         action = "開啟背景圖管理介面"
         self.Log.AddCaseLog(action)
-        self.Driver.ElementClick(ElementParam._Id_btnBackground, By.ID)
+        self.Driver.ElementClick(action, ElementParam._Id_btnBackground, By.ID)
 
     def SelectBackgroundMenu(self, menu: c_ElementParam):
         """選擇背景圖"""
         action = "選擇背景圖"
         self.Log.AddCaseLog(action)
-        self.Driver.ElementClick(menu, By.ID)
+        self.Driver.ElementClick(action, menu, By.ID)
 
     class FollowMe:
         pass
@@ -818,13 +819,15 @@ class Background(FuncBase):
             """開啟背景圖管理介面"""
             action = "開啟背景圖管理介面"
             self.Log.AddCaseLog(action)
-            self.Driver.ElementClick(ElementParam._Id_buttonStandard, By.ID)
+            self.Driver.ElementClick(
+                action, ElementParam._Id_buttonStandard, By.ID)
 
         def ChangeColorByAdvanced(self, R, G, B, A):
             """開啟背景圖管理介面"""
             action = "開啟背景圖管理介面"
             self.Log.AddCaseLog(action)
-            self.Driver.ElementClick(ElementParam._Id_buttonAdvanced, By.ID)
+            self.Driver.ElementClick(
+                action, ElementParam._Id_buttonAdvanced, By.ID)
 
             for i in range(4):
                 pattern_xpath = "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup" + \
@@ -900,10 +903,11 @@ class Background(FuncBase):
         """啟用浮水印"""
         action = "啟用浮水印"
         self.Log.AddCaseLog(action)
-        self.Driver.ElementClick(ElementParam._Id_checkGridLine, By.ID)
+        self.Driver.ElementClick(action, ElementParam._Id_checkGridLine, By.ID)
 
     def ClickWatermarkBtn(self):
         """啟用浮水印"""
         action = "啟用浮水印"
         self.Log.AddCaseLog(action)
-        self.Driver.ElementClick(ElementParam._Id_checkWaterMark, By.ID)
+        self.Driver.ElementClick(
+            action, ElementParam._Id_checkWaterMark, By.ID)

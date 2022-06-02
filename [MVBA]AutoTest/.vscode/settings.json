@@ -2,6 +2,7 @@
     "python.analysis.extraPaths": [
         "./UnitFunction",
         "./Params",
+        "./Params",
         "./Params"
     ],
     "editor.wordWrap": "off",

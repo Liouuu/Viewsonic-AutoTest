@@ -1,26 +1,27 @@
+from ast import Import
+from io import BytesIO
 from tkinter import SEL_FIRST
 from turtle import width
-from openpyxl.drawing.image import Image
+from PIL import Image as PILImage
 from Params. SystemParams import FileExt
 from openpyxl import *
+from openpyxl.drawing.image import Image
 from openpyxl.utils import get_column_letter
 import os
+import types
 
 
 class LibExcel:
     """Excel幫助類"""
 # region Property
-    __workbook: Workbook
 
 # endregion
 
-
 # region Construct
-
     def __init__(self, path, name):
         self.Path = path
         self.fileName = name
-
+        self.__workbook: Workbook = None
     # region VirtualFunction
         self._AfterSetData = None
     # endregion
@@ -62,16 +63,21 @@ class LibExcel:
         rowIdx = 1
         for row in table:
             columnIdx = 1
-            for columnName, colunmValue in row.__dict__.items():
-                if(isinstance(colunmValue, str)):
-                    if(colunmValue != '' or isWriteEmpty):
-                        sheet.cell(rowIdx, columnIdx, colunmValue)
-                elif (isinstance(colunmValue, Image)):
-                    # Ascii取大寫英文字母欄位
-                    sheet.add_image(colunmValue, chr(columnIdx+64)+str(rowIdx))
-                if(not self._AfterSetData is None):
-                    self._AfterSetData(sheet.row_dimensions[rowIdx], sheet.column_dimensions[chr(
-                        columnIdx+64)], colunmValue)
+            for columnName, columnValue in row.__dict__.items():
+                if(columnValue != None):
+                    if(isinstance(columnValue, str)):
+                        if(columnValue != '' or isWriteEmpty):
+                            sheet.cell(rowIdx, columnIdx, columnValue)
+                    elif (isinstance(columnValue, PILImage.Image)):
+                        # 20220602:之後看到再改，把所有Log存成PILImage格式的一律改成BytesIO即可
+                        byte_io = BytesIO()
+                        columnValue.save(byte_io, 'PNG')
+                        img = Image(byte_io)
+                        sheet.add_image(img, chr(
+                            columnIdx+64)+str(rowIdx))
+                    if(not self._AfterSetData is None):
+                        self._AfterSetData(sheet.row_dimensions[rowIdx], sheet.column_dimensions[chr(
+                            columnIdx+64)], columnValue)
                 columnIdx += 1
             rowIdx += 1
 
@@ -98,8 +104,6 @@ class LibExcel:
     def __InitSize(self, sheet):
         for column in sheet.columns:
             sheet.column_dimensions[column[0].column_letter].width = 0
-        # for row in sheet.rows:
-        #     sheet.row_dimensions[row[0].row].height = 0
 
     # 設置最大欄位寬
     def __SetMaxColumnSize(self, sheet, cell):
@@ -110,7 +114,4 @@ class LibExcel:
 
     def __SetMaxRowSize(self,  sheet, cell):
         ""
-        # if cell.value:
-        #     sheet.row_dimensions[cell.row].height = max(
-        #         sheet.row_dimensions[cell.row].height, len(str(cell.value).encode('big5'))*1.2)
 # endregion

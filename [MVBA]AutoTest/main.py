@@ -10,13 +10,6 @@ from TestCases import AdornerTestCase
 #                        LoginAndActivateTestCase, MarkerTestCase, ShapeTestCase,
 #                        StickyNoteTestCase, TextTestCase, TierTestCase)
 
-# '''Before you test MVBA, please check:
-# 1. Language setting should be English.
-# 2. Hide the date on canvas.
-# 3. Your system clipboard is empty.
-# 4. The resolution should be 1920x1080.(建議用我桌上平板)
-# 5. MVBA theme should be Education.'''
-
 
 class NoActivateTestCase(unittest.TestCase):
 
@@ -26,7 +19,6 @@ class NoActivateTestCase(unittest.TestCase):
     p = AdornerTestCase.AdornerTestCase()
     # p.PenCase.Case01_OpenAdornerMenu()
     p.PenCase.ExecCase()
-    p.PenCase.Log.CreateLog()
 
     def setUp(self):
         self.Driver = LibWebDriver(isActivate=False)
@@ -502,14 +494,11 @@ if __name__ == '__main__':
     suite_Import.addTest(MyTestCase("test_DropBox"))
     suite_Import.addTest(MyTestCase("test_Box"))
 
-    All_log = log.Logger(
-        './Output/Logs/All'+datetime.datetime.now().strftime(' %Y%m%d %H_%M_%S') + '.log', level='error')
     runner = unittest.TextTestRunner(verbosity=2)
 
     # All_log.logger.error("PenTestCase: " + str(runner.run(suite_pen)))
     # All_log.logger.error("ShapesTestCase: " + str(runner.run(suite_Shapes)))
     # All_log.logger.error("EraserTestCase: " + str(runner.run(suite_eraser)))
-    All_log.logger.error("TextTestCase: " + str(runner.run(suite_text)))
     # All_log.logger.error("StickyNoteTestCase: " + str(runner.run(suite_StickyNote)))
     # All_log.logger.error("BackgroundTestCase: " + str(runner.run(suite_background)))
     # All_log.logger.error("AdornerTestCase: " + str(runner.run(suite_Adorner)))

@@ -342,5 +342,9 @@ class c_ElementParam:
     def _Id_checkbuttonColorBg(
         self): return self._Site+":id/checkbuttonColorBg"
 
+    @property
+    def _XPath_Canvas(
+        self): return "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.FrameLayout[2]"
+
 
 ElementParam = c_ElementParam()

@@ -1,7 +1,10 @@
+import base64
+from io import BytesIO
 import time
 from typing import TYPE_CHECKING
 from appium import webdriver
-from openpyxl.drawing.image import Image
+from PIL import Image
+import numpy as np
 import Library.Compare as Compare
 from Params.ElementParams import ElementParam
 from selenium.webdriver.support.ui import WebDriverWait
@@ -96,28 +99,23 @@ class LibWebDriver:
         else:
             btn.click()
 
-    def ScreenshotAndCheck(self, src, element: str, elementType: By,):  # 待處理這段
-        """將整個Canvas截圖並驗證"""
-        action = "將整個Canvas截圖並驗證"
-        self.Log.AddUnitLog(action, "將整個Canvas截圖並驗證", element, type)
-        self.Driver.ScreenshotAndCompare(src, element, elementType)
-
-    def ScreenshotAndCompare(self, srcPic, element: str, type: By):
+    def ScreenshotAndCompare(self, srcPic: Image, element: str, type: By):
         """截圖，並比較是否和原圖一致"""
-        dstImg = self.Screenshot(element, type)
-        srcImg = srcPic
-        isSame = Compare.isImgEqual(dstImg, srcImg)
-        return (isSame, dstImg)
+        action = "截圖比對結果"
+        dstImg = self.Screenshot(action, element, type)
+        isSame = np.array_equal(np.asarray(dstImg), np.asarray(srcPic))
+        self.Log.AddCaseLog(action, "一致" if isSame else "不一致",
+                            self.__SetPictureSize(dstImg))
 
     def Screenshot(self,  action, element, type: By):
-        """根據元素截圖"""
+        """根據元素截圖
+        注意：先截圖比較後，再回傳壓縮過的圖檔供之後Excel保存使用
+        """
         self.Log.AddUnitLog(action, "截圖", element, type)
-        img = Image()
         if(type is By.XPATH):
-            self.__ScreenshotByXpath(element)
+            return self.__ScreenshotByXpath(element)
         elif(type is By.ID):
-            self.__ScreenshotById(element)
-        return self.__SetPictureSize(img)
+            return self.__ScreenshotById(element)
 
     def Tap(self, x, y):
         self.Touch.press(x=x, y=y).release().perform()
@@ -145,21 +143,20 @@ class LibWebDriver:
 
 # region Private
 
-    def __SetPictureSize(img: Image):
+    def __SetPictureSize(slef, img: Image):
         """重新調整圖片大小，若高度超過135pixel，則照比例縮小"""
         if img.height * 3/4 >= 135:
             n = img.height/180
-            img.width, img.height = img.width/n, img.height/n
+            img._Size = (img.width/n, img.height/n)
         return img
 
     def __ScreenshotByXpath(self, xpath):
         """根據xpath截圖"""
-        base64 = self.Driver.find_element_by_xpath(
-            xpath).screenshot_as_base64()
-        return Image(base64)
+        return Image.open(BytesIO(base64.b64decode(
+            self.Driver.find_element_by_xpath(xpath).screenshot_as_base64)))
 
     def __ScreenshotById(self, id):
         """根據id截圖"""
-        base64 = self.Driver.find_element_by_id(id).screenshot_as_base64()
-        return Image(base64)
+        return Image.open(BytesIO(base64.b64decode(
+            self.Driver.find_element_by_id(id).screenshot_as_base64)))
 # endregion

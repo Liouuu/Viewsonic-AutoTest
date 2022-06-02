@@ -4,7 +4,7 @@ import inspect
 
 class LibData:
     @staticmethod
-    def StringMerge(merge, *params):
+    def Merge(merge, *params):
         result = ""
         for param in params:
             if(result and LibData.__LastExist(merge, result)):
@@ -14,7 +14,7 @@ class LibData:
 
     @staticmethod
     def AddExtention(fileName: str, extention: str):
-        return fileName if LibData.__LastExist(extention, fileName) else fileName+extention
+        return fileName+extention if LibData.__LastExist(extention, fileName) else fileName
 
     @staticmethod
     def __LastExist(merge, strVal):
