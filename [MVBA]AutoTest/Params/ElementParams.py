@@ -4,6 +4,7 @@ from enum import Enum
 class c_ElementParam:
     @property
     def _Site(self): return "com.viewsonic.droid"
+    #region Id
     @property
     def _Id_titleTextView(self): return self._Site+":id/titleTextView"
     @property
@@ -342,9 +343,32 @@ class c_ElementParam:
     def _Id_checkbuttonColorBg(
         self): return self._Site+":id/checkbuttonColorBg"
 
+
+    @property
+    def _Id_permission(self):
+        return self._Site+":id/permission_allow_button"
+
+    @property
+    def _Id_android_button(self):
+        return "android:id/button1"
+    @property
+    def _Id_Send(self):
+        return "com.google.android.gm:id/send"
+    #endregion
+
+    #region XPath
     @property
     def _XPath_Canvas(
         self): return "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.FrameLayout[2]"
 
+    @property
+    def _XPath_EditText(
+        self): return "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.view.ViewGroup/android.widget.EditText"
 
+    @property
+    def _XPath_TextView(
+        self): return "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.TextView[4]"
+
+
+    #endregion
 ElementParam = c_ElementParam()
