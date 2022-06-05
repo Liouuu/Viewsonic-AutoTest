@@ -4,39 +4,15 @@ from unittest import result
 import time
 import datetime
 from UnitFunction import log, LoginAndActive, Tier
-import sys
-import os
-sys.path.append(os.getcwd())
-Tier_w = Workbook()
-w_s = Tier_w.active
-w_s.title = "No Activate"
-for w_index in range(4):
-    w_s1 = Tier_w.create_sheet(index=w_index+1, title="Tier"+str(w_index+1))
-for w in range(5):
-    sheet = Tier_w.worksheets[w]
-    sheet['A1'] = "項目"
-    sheet['B1'] = "步驟"
-    sheet['C1'] = "結果"
-    sheet.column_dimensions['A'].width = 18.0  # 調整列寬
-    sheet.column_dimensions['B'].width = 50.0
-    sheet.column_dimensions['C'].width = 50.0
-    sheet.column_dimensions['D'].width = 48
-Tier_w.save('./Output/Excels/Tier.xlsx')
-Tier_wd = load_workbook('./Output/Excels/Tier.xlsx')
-Tier_log = log.Logger(
-    './Output/Logs/Tier'+datetime.datetime.now().strftime(' %Y%m%d %H_%M_%S') + '.log', level='info')
 
 
 def NoActivateCase(self):
-    #Tier_wd = load_workbook('./Excels/Tier.xlsx')
     sheet = Tier_wd.worksheets[0]
     try:
         sheet['B2'] = "Check WirelessPresentation for No Activate"
         if Tier.TryWirelessPresentation(self)[1] == "Whiteboard activation required" or "啟用提示":
-            # print(Tier.TryWirelessPresentation(self)[1])
             sheet['C2'] = "WirelessPresentation for No Activate is pass!!"
         else:
-            # print(Tier.TryWirelessPresentation(self)[0])
             sheet['C2'] = "WirelessPresentation for No Activate is fail!!"
 
         sheet['B3'] = "Check CaptureAll for No Activate"

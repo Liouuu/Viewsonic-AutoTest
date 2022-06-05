@@ -10,6 +10,11 @@ from cgitb import text
 from Params.ElementParams import ElementParam
 
 
+class Permissions:
+    def CheckPermission(menuElement,element,isActivty):
+        ""
+
+
 def CheckPermission_message(self):
     try:
         WebDriverWait(self.driver, 5).until(
