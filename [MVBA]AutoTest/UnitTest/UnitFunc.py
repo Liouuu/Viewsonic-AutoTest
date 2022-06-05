@@ -214,7 +214,6 @@ class ToolBar(FuncBase):
         def SelectFile(self, index):
             """選擇檔案(待處理這段)"""
             action = "選擇檔案"
-
             tar_path = '(//android.widget.ImageView[@content-desc="Whiteboard"])'
             tar_index = '['+str(index)+']'
             tar_path += tar_index

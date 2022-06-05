@@ -4,7 +4,7 @@ import unittest
 from Library import LibData
 from Library.LibWebDriver import LibWebDriver
 from Params.SystemParams import SysParams
-from TestCases import AdornerTestCase
+from IntegratedTest import AdornerTest
 # , BackgroundTestCase, EraserTestCase,
 #                        HighlighterTestCase, ImagesearchCase, ImportTestcase,
 #                        LoginAndActivateTestCase, MarkerTestCase, ShapeTestCase,
@@ -16,7 +16,7 @@ class NoActivateTestCase(unittest.TestCase):
     # LibData.LibData.DynamicExecClassFunction(
     #     AdornerTestCase.AdornerTestCase.Pen.Case01_OpenAdornerMenu())
 
-    p = AdornerTestCase.AdornerTestCase()
+    p = AdornerTest.AdornerTest()
     # p.PenCase.Case01_OpenAdornerMenu()
     p.PenCase.ExecCase()
 
@@ -125,196 +125,196 @@ class MyTestCase(unittest.TestCase):
         BackgroundTestCase.Case3_3(self)
 
     def test_AdornerCase1_1(self):
-        AdornerTestCase.Case1_1(self)
+        AdornerTest.Case1_1(self)
 
     def test_AdornerCase1_2(self):
-        AdornerTestCase.Case1_2(self)
+        AdornerTest.Case1_2(self)
 
     def test_AdornerCase1_3(self):
-        AdornerTestCase.Case1_3(self)
+        AdornerTest.Case1_3(self)
 
     def test_AdornerCase1_4(self):
-        AdornerTestCase.Case1_4(self)
+        AdornerTest.Case1_4(self)
 
     def test_AdornerCase1_5(self):
-        AdornerTestCase.Case1_5(self)
+        AdornerTest.Case1_5(self)
 
     def test_AdornerCase1_6(self):
-        AdornerTestCase.Case1_6(self)
+        AdornerTest.Case1_6(self)
 
     def test_AdornerCase1_7(self):
-        AdornerTestCase.Case1_7(self)
+        AdornerTest.Case1_7(self)
 
     def test_AdornerCase1_8(self):
-        AdornerTestCase.Case1_8(self)
+        AdornerTest.Case1_8(self)
 
     def test_AdornerCase1_9(self):
-        AdornerTestCase.Case1_9(self)
+        AdornerTest.Case1_9(self)
 
     def test_AdornerCase1_10(self):
-        AdornerTestCase.Case1_10(self)
+        AdornerTest.Case1_10(self)
 
     def test_AdornerCase1_11(self):
-        AdornerTestCase.Case1_11(self)
+        AdornerTest.Case1_11(self)
 
     def test_AdornerCase1_12(self):
-        AdornerTestCase.Case1_12(self)
+        AdornerTest.Case1_12(self)
 
     def test_AdornerCase1_13(self):
-        AdornerTestCase.Case1_13(self)
+        AdornerTest.Case1_13(self)
 
     def test_AdornerCase2_1(self):
-        AdornerTestCase.Case2_1(self)
+        AdornerTest.Case2_1(self)
 
     def test_AdornerCase2_2(self):
-        AdornerTestCase.Case2_2(self)
+        AdornerTest.Case2_2(self)
 
     def test_AdornerCase2_3(self):
-        AdornerTestCase.Case2_3(self)
+        AdornerTest.Case2_3(self)
 
     def test_AdornerCase2_4(self):
-        AdornerTestCase.Case2_4(self)
+        AdornerTest.Case2_4(self)
 
     def test_AdornerCase2_5(self):
-        AdornerTestCase.Case2_5(self)
+        AdornerTest.Case2_5(self)
 
     def test_AdornerCase2_6(self):
-        AdornerTestCase.Case2_6(self)
+        AdornerTest.Case2_6(self)
 
     def test_AdornerCase2_7(self):
-        AdornerTestCase.Case2_7(self)
+        AdornerTest.Case2_7(self)
 
     def test_AdornerCase2_8(self):
-        AdornerTestCase.Case2_8(self)
+        AdornerTest.Case2_8(self)
 
     def test_AdornerCase2_9(self):
-        AdornerTestCase.Case2_9(self)
+        AdornerTest.Case2_9(self)
 
     def test_AdornerCase2_10(self):
-        AdornerTestCase.Case2_10(self)
+        AdornerTest.Case2_10(self)
 
     def test_AdornerCase2_11(self):
-        AdornerTestCase.Case2_11(self)
+        AdornerTest.Case2_11(self)
 
     def test_AdornerCase2_12(self):
-        AdornerTestCase.Case2_12(self)
+        AdornerTest.Case2_12(self)
 
     def test_AdornerCase2_13(self):
-        AdornerTestCase.Case2_13(self)
+        AdornerTest.Case2_13(self)
 
     def test_AdornerCase2_14(self):
-        AdornerTestCase.Case2_14(self)
+        AdornerTest.Case2_14(self)
 
     def test_AdornerCase3_1(self):
-        AdornerTestCase.Case3_1(self)
+        AdornerTest.Case3_1(self)
 
     def test_AdornerCase3_2(self):
-        AdornerTestCase.Case3_2(self)
+        AdornerTest.Case3_2(self)
 
     def test_AdornerCase3_3(self):
-        AdornerTestCase.Case3_3(self)
+        AdornerTest.Case3_3(self)
 
     def test_AdornerCase3_4(self):
-        AdornerTestCase.Case3_4(self)
+        AdornerTest.Case3_4(self)
 
     def test_AdornerCase3_5(self):
-        AdornerTestCase.Case3_5(self)
+        AdornerTest.Case3_5(self)
 
     def test_AdornerCase3_6(self):
-        AdornerTestCase.Case3_6(self)
+        AdornerTest.Case3_6(self)
 
     def test_AdornerCase3_7(self):
-        AdornerTestCase.Case3_7(self)
+        AdornerTest.Case3_7(self)
 
     def test_AdornerCase3_8(self):
-        AdornerTestCase.Case3_8(self)
+        AdornerTest.Case3_8(self)
 
     def test_AdornerCase3_9(self):
-        AdornerTestCase.Case3_9(self)
+        AdornerTest.Case3_9(self)
 
     def test_AdornerCase3_10(self):
-        AdornerTestCase.Case3_10(self)
+        AdornerTest.Case3_10(self)
 
     def test_AdornerCase3_11(self):
-        AdornerTestCase.Case3_11(self)
+        AdornerTest.Case3_11(self)
 
     def test_AdornerCase3_12(self):
-        AdornerTestCase.Case3_12(self)
+        AdornerTest.Case3_12(self)
 
     def test_AdornerCase3_13(self):
-        AdornerTestCase.Case3_13(self)
+        AdornerTest.Case3_13(self)
 
     def test_AdornerCase3_14(self):
-        AdornerTestCase.Case3_14(self)
+        AdornerTest.Case3_14(self)
 
     def test_AdornerCase4_1(self):
-        AdornerTestCase.Case4_1(self)
+        AdornerTest.Case4_1(self)
 
     def test_AdornerCase4_2(self):
-        AdornerTestCase.Case4_2(self)
+        AdornerTest.Case4_2(self)
 
     def test_AdornerCase4_3(self):
-        AdornerTestCase.Case4_3(self)
+        AdornerTest.Case4_3(self)
 
     def test_AdornerCase4_4(self):
-        AdornerTestCase.Case4_4(self)
+        AdornerTest.Case4_4(self)
 
     def test_AdornerCase4_5(self):
-        AdornerTestCase.Case4_5(self)
+        AdornerTest.Case4_5(self)
 
     def test_AdornerCase4_6(self):
-        AdornerTestCase.Case4_6(self)
+        AdornerTest.Case4_6(self)
 
     def test_AdornerCase4_7(self):
-        AdornerTestCase.Case4_7(self)
+        AdornerTest.Case4_7(self)
 
     def test_AdornerCase4_8(self):
-        AdornerTestCase.Case4_8(self)
+        AdornerTest.Case4_8(self)
 
     def test_AdornerCase4_9(self):
-        AdornerTestCase.Case4_9(self)
+        AdornerTest.Case4_9(self)
 
     def test_AdornerCase4_10(self):
-        AdornerTestCase.Case4_10(self)
+        AdornerTest.Case4_10(self)
 
     def test_AdornerCase4_11(self):
-        AdornerTestCase.Case4_11(self)
+        AdornerTest.Case4_11(self)
 
     def test_AdornerCase4_12(self):
-        AdornerTestCase.Case4_12(self)
+        AdornerTest.Case4_12(self)
 
     def test_AdornerCase4_13(self):
-        AdornerTestCase.Case4_13(self)
+        AdornerTest.Case4_13(self)
 
     def test_AdornerCase5_1(self):
-        AdornerTestCase.Case5_1(self)
+        AdornerTest.Case5_1(self)
 
     def test_AdornerCase5_2(self):
-        AdornerTestCase.Case5_2(self)
+        AdornerTest.Case5_2(self)
 
     def test_AdornerCase5_3(self):
-        AdornerTestCase.Case5_3(self)
+        AdornerTest.Case5_3(self)
 
     def test_AdornerCase5_4(self):
-        AdornerTestCase.Case5_4(self)
+        AdornerTest.Case5_4(self)
 
     def test_AdornerCase5_5(self):
-        AdornerTestCase.Case5_5(self)
+        AdornerTest.Case5_5(self)
 
     def test_AdornerCase5_6(self):
-        AdornerTestCase.Case5_6(self)
+        AdornerTest.Case5_6(self)
 
     def test_AdornerCase5_7(self):
-        AdornerTestCase.Case5_7(self)
+        AdornerTest.Case5_7(self)
 
     def test_AdornerCase5_8(self):
-        AdornerTestCase.Case5_8(self)
+        AdornerTest.Case5_8(self)
 
     def test_AdornerCase5_9(self):
-        AdornerTestCase.Case5_9(self)
+        AdornerTest.Case5_9(self)
 
     def test_AdornerCase5_10(self):
-        AdornerTestCase.Case5_10(self)
+        AdornerTest.Case5_10(self)
 
     def test_TierCase_Preload(self):
         TierTestCase.TierPreloadCase(self)

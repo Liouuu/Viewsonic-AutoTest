@@ -15,16 +15,16 @@ from Params.ElementParams import ElementParam
 def inputsearch(self, type):
     WebDriverWait(self.driver, 15).until(
         EC.presence_of_element_located(
-            (By.ID, ElementParam._Id_searchEditText))
-    )
+            (By.ID, ElementParam._Id_searchEditText)))
     self.driver.find_element_by_id(
         ElementParam._Id_searchEditText).send_keys(type)
+
     WebDriverWait(self.driver, 15).until(
         EC.presence_of_element_located(
-            (By.ID, ElementParam._Id_search_icon))
-    )
+            (By.ID, ElementParam._Id_search_icon)))
     self.driver.find_element_by_id(
         ElementParam._Id_search_icon).click()
+
     search = "搜尋 "+type+" Image"
     WebDriverWait(self.driver, 60, 1).until(
         EC.presence_of_element_located(

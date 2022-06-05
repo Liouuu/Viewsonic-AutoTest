@@ -41,8 +41,7 @@ def Activate(self, name, email, emailC):
 
     WebDriverWait(self.driver, 10).until(
         EC.presence_of_element_located(
-            (By.ID, ElementParam._Id_buttonOk))
-    )
+            (By.ID, ElementParam._Id_buttonOk)))
     self.driver.find_element_by_id(
         ElementParam._Id_buttonOk).click()  # 點擊'好'
 

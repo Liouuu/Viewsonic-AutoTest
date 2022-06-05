@@ -1,9 +1,10 @@
 from ast import Delete
 import imp
 from openpyxl.drawing.image import Image
-from Params.CaseDoc import *
-from TestCases import *
-from TestCases.CaseBase import CaseBase
+from ElementParams import c_ElementParam
+from SampleFileParam import *
+from IntegratedTest import *
+from IntegratedTest.CaseBase import CaseBase
 from UnitFunction import UnitFunc
 from UnitFunction import *
 from UnitFunction.UnitFunc import *
@@ -38,23 +39,23 @@ class Step:
     def OpenAdorner(self):
         self.CreateObject()
         self.Driver.ScreenshotAndCompare(
-            SC.Pen_AdorneMenu, ElementParam._Id_layoutControlBar, By.ID)
+            SC.Pen_AdorneMenu, c_ElementParam._Id_layoutControlBar, By.ID)
 
     def Delete(self):
         self.CreateObject()
         self.Adorner.ClickDeleteBtn()
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def Lock(self):
         self.CreateObject()
         self.Adorner.ClickLockBtn()
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._Id_layoutAdorner, By.ID)
+            SamplePicParam.Pen_Delete, ElementParam._Id_layoutAdorner, By.ID)
         self.ToolBar.eraser.ClickEraserBtn()
         self.Canvas.EraseObj(845, 549)  # ?
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def HyperLink(self):
         pass  # 2022-05-30 暫不測試
@@ -64,17 +65,17 @@ class Step:
         self.Adorner.ClickCopyBtn()
         self.FloatBar.Paste()
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def CutPaste(self):
         self.CreateObject()
         self.Adorner.ClickCutBtn()
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
         self.FloatBar.CreateNewPage()
         self.FloatBar.Paste()
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def Replicate(self):
         self.CreateObject()
@@ -83,10 +84,10 @@ class Step:
         self.Driver.Swipe("SwipeObject")
         self.Driver.Swipe("SwipeObject")
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._Id_layoutAdorner, By.ID)
+            SamplePicParam.Pen_Delete, ElementParam._Id_layoutAdorner, By.ID)
         "中間好像還有動作"
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def Layer(self):
         pass
@@ -97,7 +98,7 @@ class Step:
         self.Adorner.SetStrokeWidthBar(32)
         self.Adorner.ClickStrokeWidthBtn()
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def SetTransparency(self):
         self.CreateObject()
@@ -105,31 +106,31 @@ class Step:
         self.Adorner.SetOpacityBar(128)
         self.Adorner.ClickOpacityBtn()
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def SetPalette(self):
         self.CreateObject()
         self.Adorner.ClickColorButton()
         self.Adorner.ChangeColorStandard(1)
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
         self.Adorner.ClickColorButton()
         # Action.SetColor 晚點調整
         self.Adorner.ColorMenu.ChangeColorByAdvanced(0, 255, 255, 200)
         # close color menu 待調整：關閉Color Menu
         self.Driver.Tap(1900, 500)
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def Flip(self):
         self.CreateObject()
         self.Adorner.ClickFlipButton()
         self.Adorner.doFlip("Y")
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
         self.Adorner.doFlip("X")
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def Mirror(self):
         self.CreateObject()
@@ -138,20 +139,20 @@ class Step:
         for dir in dirs:
             Adorner.doMirror(dir)
         self.Driver.ScreenshotAndCompare(
-            ControlPic.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def Fill(self):
         self.CreateObject()
         self.Adorner.buttonFill()
 
 
-class AdornerTestCase:
+class AdornerTest:
     def __init__(self, driver: LWD = LWD.default(True, LogPackage("Adorner", srcFile="Adorner_Pen"))):
-        self.PenCase = AdornerTestCase.Pen(driver, driver.Log)
-        self.Shape_2dCase = AdornerTestCase.Shape_2D(driver, driver.Log)
-        self.Shape_3dCase = AdornerTestCase.Shape_3D(driver, driver.Log)
-        self.LineCase = AdornerTestCase.Line(driver, driver.Log)
-        self.TextCase = AdornerTestCase.Text(driver, driver.Log)
+        self.PenCase = AdornerTest.Pen(driver, driver.Log)
+        self.Shape_2dCase = AdornerTest.Shape_2D(driver, driver.Log)
+        self.Shape_3dCase = AdornerTest.Shape_3D(driver, driver.Log)
+        self.LineCase = AdornerTest.Line(driver, driver.Log)
+        self.TextCase = AdornerTest.Text(driver, driver.Log)
 
     class Pen(Step):
         def __init__(self, driver: LWD, log: LogPackage):
