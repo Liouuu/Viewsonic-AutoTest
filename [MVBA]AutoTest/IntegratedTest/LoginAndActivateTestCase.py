@@ -1,7 +1,4 @@
-from UnitFunction import LoginAndActive
-import sys
-import os
-sys.path.append(os.getcwd())
+from UnitBase import LoginAndActive
 
 
 def Case1(self, email):

@@ -1,3 +1,4 @@
+from enum import Enum
 from Library.LibData import LibData
 
 
@@ -70,3 +71,18 @@ class c_imgPath:
 
 
 ImgPath = c_imgPath()
+
+
+class DriveBox(Enum):
+    Local = "Local"
+    Google = "GoogleDrive"
+    OneDrive = "OneDrive"
+    OneDriveForBusiness = "OneDriveForBusiness"
+    DropBox = "DropBox"
+    Box = "Box"
+
+
+class Platform(Enum):
+    Android = ""
+    Chromebook = ""
+    IFP50_3 = ""

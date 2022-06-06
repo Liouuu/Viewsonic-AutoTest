@@ -1,14 +1,8 @@
-from ast import Import
 from io import BytesIO
-from tkinter import SEL_FIRST
-from turtle import width
-from PIL import Image as PILImage
-from Params. SystemParams import FileExt
+from Params.SystemParams import FileExt
 from openpyxl import *
 from openpyxl.drawing.image import Image
-from openpyxl.utils import get_column_letter
 import os
-import types
 
 
 class LibExcel:
@@ -68,12 +62,8 @@ class LibExcel:
                     if(isinstance(columnValue, str)):
                         if(columnValue != '' or isWriteEmpty):
                             sheet.cell(rowIdx, columnIdx, columnValue)
-                    elif (isinstance(columnValue, PILImage.Image)):
-                        # 20220602:之後看到再改，把所有Log存成PILImage格式的一律改成BytesIO即可
-                        byte_io = BytesIO()
-                        columnValue.save(byte_io, 'PNG')
-                        img = Image(byte_io)
-                        sheet.add_image(img, chr(
+                    elif (isinstance(columnValue, BytesIO)):
+                        sheet.add_image(Image(columnValue), chr(
                             columnIdx+64)+str(rowIdx))
                     if(not self._AfterSetData is None):
                         self._AfterSetData(sheet.row_dimensions[rowIdx], sheet.column_dimensions[chr(

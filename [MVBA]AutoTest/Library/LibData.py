@@ -1,5 +1,6 @@
 from inspect import getmembers, isfunction
 import inspect
+from io import BytesIO
 
 
 class LibData:
@@ -35,3 +36,7 @@ class LibData:
     def DynamicExecClassFunction(methodClass, *args):
         for item in getmembers(methodClass, isfunction):
             item[1](*args)
+
+    @staticmethod
+    def GetFileBytes(filePath: str):
+        return BytesIO(open(filePath, "rb").read())

@@ -3,7 +3,9 @@
         "./UnitFunction",
         "./Params",
         "./Params",
-        "./Params"
+        "./Params",
+        "./UnitTest",
+        "./UnitTest"
     ],
     "editor.wordWrap": "off",
     "diffEditor.wordWrap": "off",

@@ -1,12 +1,12 @@
-import UnitFunc
+import UnitBase
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from Params.ElementParams import ElementParam
 
 
-class Permissions(UnitFunc.FuncBase):
-    def CheckPermission(self,menuElement,element,isActivty,isToast):
+class Permissions(UnitBase.FuncBase):
+    def CheckPermission(self, menuElement, element, isActivty, isToast):
         if(not menuElement is None):
             self.Driver.ElementClick(menuElement)
         if(not menuElement is None):

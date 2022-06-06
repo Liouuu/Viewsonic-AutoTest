@@ -1,3 +1,4 @@
+from io import BytesIO
 from Library.LibData import LibData
 from Library.LibExcel import LibExcel
 from Params.SystemParams import SysPath, FileExt
@@ -68,7 +69,7 @@ class LogPackage:
 
 # region Construct
     def __init__(self,  logName: str,
-                 srcPath="BlackboxTest", srcFile="", logPath="Excels", logType: LogType = LogType.excel):
+                 srcPath="SampleDoc", srcFile="", logPath="Excels", logType: LogType = LogType.excel):
         """建構函數
         :param str logName : 保存Log名稱 (注：檔名會自動加上現在時刻)
         :param str srcFilePath : 測試檔案路徑
@@ -93,7 +94,7 @@ class LogPackage:
         else:
             pass
 
-    def AddCaseLog(self, action, result: str = "", srcPic: Image = None, screenshot: Image = None):
+    def AddCaseLog(self, action, result: str = "", srcPic: BytesIO = None, screenshot: BytesIO = None):
         """插入Case步驟Log
         :param str  : 表名稱
         :param str action : 執行的動作
@@ -155,7 +156,7 @@ class CaseLogObj:
        2. Step欄位永遠為空
     """
 
-    def __init__(self, time: str = "", action: str = "", result: str = "", srcPic: Image = None, screenshot: Image = None):
+    def __init__(self, time: str = "", action: str = "", result: str = "", srcPic: BytesIO = None, screenshot: BytesIO = None):
         self.Time = time
         self.Step = ""
         self.Action = action

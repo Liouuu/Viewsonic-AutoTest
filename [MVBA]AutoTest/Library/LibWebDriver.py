@@ -1,11 +1,9 @@
 import base64
 from io import BytesIO
 import time
-from typing import TYPE_CHECKING
 from appium import webdriver
-from PIL import Image
+from openpyxl.drawing.image import Image
 import numpy as np
-import Library.Compare as Compare
 from Params.ElementParams import ElementParam
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -102,10 +100,12 @@ class LibWebDriver:
     def ScreenshotAndCompare(self, srcPic: Image, element: str, type: By):
         """截圖，並比較是否和原圖一致"""
         action = "截圖比對結果"
-        dstImg = self.Screenshot(action, element, type)
-        isSame = np.array_equal(np.asarray(dstImg), np.asarray(srcPic))
+        dstPic = self.Screenshot(action, element, type)
+        isSame = np.array_equal(np.asarray(dstPic), np.asarray(srcPic))
         self.Log.AddCaseLog(action, "一致" if isSame else "不一致",
-                            self.__SetPictureSize(dstImg))
+                            self.__SetPictureSize(srcPic),
+                            self.__SetPictureSize(dstPic))
+        return isSame
 
     def Screenshot(self,  action, element, type: By):
         """根據元素截圖
@@ -143,8 +143,9 @@ class LibWebDriver:
 
 # region Private
 
-    def __SetPictureSize(slef, img: Image):
+    def __SetPictureSize(slef, imgBytes: BytesIO):
         """重新調整圖片大小，若高度超過135pixel，則照比例縮小"""
+        img: Image = Image(imgBytes)
         if img.height * 3/4 >= 135:
             n = img.height/180
             img._Size = (img.width/n, img.height/n)
@@ -152,11 +153,11 @@ class LibWebDriver:
 
     def __ScreenshotByXpath(self, xpath):
         """根據xpath截圖"""
-        return Image.open(BytesIO(base64.b64decode(
-            self.Driver.find_element_by_xpath(xpath).screenshot_as_base64)))
+        return BytesIO(base64.b64decode(
+            self.Driver.find_element_by_xpath(xpath).screenshot_as_base64))
 
     def __ScreenshotById(self, id):
         """根據id截圖"""
-        return Image.open(BytesIO(base64.b64decode(
-            self.Driver.find_element_by_id(id).screenshot_as_base64)))
+        return BytesIO(base64.b64decode(
+            self.Driver.find_element_by_id(id).screenshot_as_base64))
 # endregion

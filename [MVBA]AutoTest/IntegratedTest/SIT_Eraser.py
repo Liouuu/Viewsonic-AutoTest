@@ -2,11 +2,12 @@ from lib2to3.pgen2 import driver
 import ElementParams
 from Library import Compare
 from Library.LibLogHelper import LogPackage
-from UnitTest.UnitFunc import Canvas, FloatBar, ToolBar
+from UnitBase import Canvas, FloatBar, ToolBar
 from . import Canva
 import time
 from Library.LibWebDriver import LibWebDriver as LWD
 from Params.SampleFileParam import *
+
 
 def OpenOLF(self):  # Open the test file
     FileManagement.CloseFileManagement(self)
@@ -18,13 +19,14 @@ def OpenOLF(self):  # Open the test file
     FileManagement.SelectFile(self, 3)
     time.sleep(8)
 
+
 class EraserTest:
 
     def __init__(self, driver: LWD = LWD.default(True, LogPackage("Adorner", srcFile="Adorner_Pen"))):
-        self.Driver=driver
+        self.Driver = driver
+
     def Case1_xxx(self):
         ToolBar.Folder.OpenFileManagement()
-        Eraser_log.logger.info("Open an OLF")
         OpenOLF(self)
         ToolBar.Eraser.OpenEraserMenu()
         ToolBar.Eraser.ChooseRegularEraser()
@@ -32,7 +34,8 @@ class EraserTest:
         Canvas.CloseMenu()
         T_list = [[60, 218], [326, 202]]
         E_list = [[431, 171], [661, 159]]
-        S_list = [[1026, 187], [894, 159], [882, 268],[1049, 408], [1034, 482], [847, 466]]
+        S_list = [[1026, 187], [894, 159], [882, 268],
+                  [1049, 408], [1034, 482], [847, 466]]
         T2_list = [[1166, 179], [1582, 148]]
         self.Driver.Swipe(self, T_list, 1500)
         self.Driver.Swipe(self, E_list, 1500)
@@ -40,11 +43,10 @@ class EraserTest:
         self.Driver.Swipe(self, T2_list, 1500)
         LOCK_list = [[377, 692], [1718, 707]]
         self.Driver.Swipe(self, LOCK_list, 1500)
-        self.Driver.ScreenshotAndCompare(SamplePicParam.EraserCase1,ElementParams._XPath_Canvas, By.XPATH)
-
+        self.Driver.ScreenshotAndCompare(
+            SamplePicParam.EraserCase1, ElementParams._XPath_Canvas, By.XPATH)
 
     def Case2_yyy(self):
-        Eraser_log.logger.info("Open an OLF")
         OpenOLF(self)
 
         FloatBar.NextPage()
@@ -78,14 +80,15 @@ class EraserTest:
             time.sleep(2)
             count += 1
             if count % 2 == 0:
-                self.Driver.ScreenshotAndCompare(srcPic,ElementParams._XPath_Canvas, By.XPATH)
+                self.Driver.ScreenshotAndCompare(
+                    srcPic, ElementParams._XPath_Canvas, By.XPATH)
                 FloatBar.NextPage(self)
                 page += 1
                 time.sleep(1)
-            self.Driver.ScreenshotAndCompare(srcPic,ElementParams._XPath_Canvas, By.XPATH)
+            self.Driver.ScreenshotAndCompare(
+                srcPic, ElementParams._XPath_Canvas, By.XPATH)
 
     def Case3_zzz(self):
-        Eraser_log.logger.info("Open an OLF")
         OpenOLF(self)
         FloatBar.NextPage()
         ToolBar.Eraser.OpenEraserMenu()
@@ -171,7 +174,8 @@ class EraserTest:
         ToolBar.Eraser.OpenEraserMenu()
         ToolBar.Eraser.ChooseCircleEraser()
         # For case 2-3
-        circle_eraser_2to3 = [[30, 87], [30, 932], [1876, 910], [1898, 127], [100, 105]]
+        circle_eraser_2to3 = [[30, 87], [30, 932],
+                              [1876, 910], [1898, 127], [100, 105]]
 
         for i in range(8):
             Canva.Swipe(self, circle_eraser_2to3)

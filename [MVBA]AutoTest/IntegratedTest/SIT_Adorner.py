@@ -1,22 +1,22 @@
 from ast import Delete
 import imp
 from openpyxl.drawing.image import Image
-from ElementParams import c_ElementParam
-from SampleFileParam import *
+import IntegratedTest
+from Params.ElementParams import c_ElementParam
+from Params.SampleFileParam import *
 from IntegratedTest import *
-from IntegratedTest.CaseBase import CaseBase
-from UnitFunction import UnitFunc
-from UnitFunction import *
-from UnitFunction.UnitFunc import *
+from IntegratedTest.IntergrateBase import IntergrateBase
 from Library.LibLogHelper import LogPackage
 from Library.LibWebDriver import LibWebDriver as LWD
 from Library import *
+from UnitTest.UnitBase import *
 
 
-class Step:
+class Step(IntergrateBase):
     """"Adorner測試共用步驟"""
 
     def __init__(self, driver: LWD, log: LogPackage):
+        super().__init__(driver, log)
         self.SelectObject = None  # 選筆
         self.Draw = []
         self.Select = []
@@ -39,13 +39,13 @@ class Step:
     def OpenAdorner(self):
         self.CreateObject()
         self.Driver.ScreenshotAndCompare(
-            SC.Pen_AdorneMenu, c_ElementParam._Id_layoutControlBar, By.ID)
+            SC.Pen_AdorneMenu, ElementParam._Id_layoutControlBar, By.ID)
 
     def Delete(self):
         self.CreateObject()
         self.Adorner.ClickDeleteBtn()
         self.Driver.ScreenshotAndCompare(
-            SamplePicParam.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
+            SC.Pen_Delete, ElementParam._XPath_Canvas, By.XPATH)
 
     def Lock(self):
         self.CreateObject()
@@ -155,6 +155,7 @@ class AdornerTest:
         self.TextCase = AdornerTest.Text(driver, driver.Log)
 
     class Pen(Step):
+
         def __init__(self, driver: LWD, log: LogPackage):
             super().__init__(driver, log)
             self.Draw = [[929, 200], [764, 315], [741, 507], [
@@ -165,11 +166,11 @@ class AdornerTest:
 
         def ExecCase(self):
             self.Case01_OpenAdornerMenu()
-            self.Case02_Delete()
-            self.Case03_Lock()
-            self.Case04_HyperLink()
-            self.Case05_CopyPaste()
-            self.Case06_CutPaste()
+            # self.Case02_Delete()
+            # self.Case03_Lock()
+            # self.Case04_HyperLink()
+            # self.Case05_CopyPaste()
+            # self.Case06_CutPaste()
             # self.Case07_Replicate()
             # self.Case08_Layer()
             # self.Case09_SetLineStroke()
