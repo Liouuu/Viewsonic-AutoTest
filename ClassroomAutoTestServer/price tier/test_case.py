@@ -683,11 +683,7 @@ def test_qrcode_share (driver) :
     content = "The case 'test_qrcode_file': "
     logCheck.logAmountCheck()
     write_log.log(content + " Start", logPath)
-    WebDriverWait(driver, 10).until(                                
-        EC.presence_of_element_located((By.XPATH,'//div[@aria-label="t8"]')) 
-                )    
-    qrcode_share_management = driver.find_element_by_xpath('//div[@aria-label="t8"]')    #開啟file management視窗
-    qrcode_share_management.click()                                                       
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//div[@aria-label="t8"]'))).click() #開啟file management視窗
     export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     WebDriverWait(driver, 10).until(                                
         EC.presence_of_element_located((By.XPATH,'//*[@id="toolbar-menu-layer"]/div/ul/li[4]'))  #點選qr code share
