@@ -15,15 +15,15 @@ import export_table
 driver = webdriver.Chrome(ChromeDriverManager().install())
 # options.add_experimental_option('excludeSwitches', ['enable-logging'])
 # driver = webdriver.Chrome(options=options)
-account = "kim.viewsonic@gmail.com"
-password = "$Password1"
+account = ""
+password = ""
 driver.get("https://stage.myviewboard.com/signin")
 driver.maximize_window()
 
 MVBcom.loginMVBcom(driver,account,password)
 MVBcom.enter_whiteboard(driver)
 test_case.test_setting(driver)    
-test_case.test_cloud_intergration(driver) #------
+test_case.test_cloud_intergration(driver) #改ROGER的定位到這------
 # test_case.test_about(driver)
 # test_case.test_new_file(driver)
 # test_case.test_open_file(driver)
@@ -38,15 +38,15 @@ test_case.test_cloud_intergration(driver) #------
 # test_case.test_eraser(driver)
 # test_case.test_present_mode(driver)
 # test_case.test_pagemanagement(driver)
-# test_case.test_qrcode_share(driver)#kim
-# test_case.user_profile(driver)#kim
-# test_case.test_shapes(driver)#kim
-# test_case.test_shapes_lines(driver)#kim
-# test_case.test_shapes_3Dshapes(driver)#kim
-# test_case.test_shapes_tables(driver)#kim
-# test_case.test_text(driver)#kim
-# test_case.test_background(driver)#kim
-# test_case.test_background_original(driver)#kim
-# test_case.test_background_googledrive(driver)#kim
-# test_case.test_background_image_search(driver)#kim
-# test_case.test_background_color(driver)#kim
+test_case.test_qrcode_share(driver)#kim
+test_case.user_profile(driver)#kim
+test_case.test_shapes(driver)#kim
+test_case.test_shapes_lines(driver)#kim
+test_case.test_shapes_3Dshapes(driver)#kim
+test_case.test_shapes_tables(driver)#kim
+test_case.test_text(driver)#kim
+test_case.test_background(driver)#kim
+test_case.test_background_original(driver)#kim
+test_case.test_background_googledrive(driver)#kim
+test_case.test_background_image_search(driver)#kim
+test_case.test_background_color(driver)#kim

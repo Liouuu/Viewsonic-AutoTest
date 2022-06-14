@@ -14,7 +14,8 @@ import logCheck
 import file_check_and_remove
 from export_table import export_table,TestCase_steps,new_sheet,TestCase_result,TestCase_case
 localTime = get_time.now()
-
+# 只要是mainToolBar點出來的視窗>有X按鈕的路徑為:  
+# WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[class="active"]'))).click() #點擊X關閉視窗
 
 def test_setting (driver) :
     pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
@@ -32,32 +33,28 @@ def test_setting (driver) :
     # logPath =       "./log/" + localTime + "_log.txt" #找位置生成空的txt檔案
     content =       "The case 'test_setting': "
     logCheck.logAmountCheck()
-    write_log.log(content + " Start", logPath)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,'//div[@aria-label="t14"]')))    
-    open_setting_bar = driver.find_element_by_xpath('//div[@aria-label="t14"]')   
-    open_setting_bar.click()                                                   #點擊上方setting(步驟)
+    write_log.log(content + " Start", logPath)          
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH,'//div[@aria-label="t14"]'))).click()  #點擊上方setting(步驟)                                                   #點擊上方setting(步驟)
     export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))  #匯出步驟及結果到新的表單
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,'//*[@id="toolbar-menu-layer"]/div/div[2]/div[1]/ul/li[1]'))) 
-    setting = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/div[2]/div[1]/ul/li[1]')   
-    setting.click()                                                             #點擊一般設定(步驟)
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//p[text()='一般設定']"))).click()  #點擊一般設定(步驟)                                                       
     export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))    #匯出步驟及結果到新的表單
     time.sleep(2)
-    screenshot.canvas_screenshot(driver,setting_menu,case_image)                #截圖
+    screenshot.canvas_screenshot(driver,setting_menu,case_image) #截圖
     # time.sleep(2)
     # screenshot.canvas_screenshot(driver,setting_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath)
-        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)                          #比對結果為Pass，匯出結果到新的表單
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image) #比對結果為Pass，匯出結果到新的表單
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath)
-        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)                           #比對結果為fail，匯出結果到新的表單
-    close_menu = driver.find_element_by_css_selector('#toolbar-menu-layer > div > div._2BEMrkOJ > div._24gr4Mph') 
-    close_menu.click()                                                          #點擊setting視窗 X(步驟)
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image) #比對結果為fail，匯出結果到新的表單
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[class="active"]'))).click() #關閉background_original視窗
     export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))    #匯出步驟及結果到新的表單
     write_log.log(content + " End", logPath)
+
 
 def test_cloud_intergration (driver):
     pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
@@ -76,13 +73,9 @@ def test_cloud_intergration (driver):
     content =       "The case 'test_cloud_intergration': "
     logCheck.logAmountCheck()
     write_log.log(content + " Start", logPath)
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,'//div[@aria-label="t14"]')))    
-    open_setting_bar = driver.find_element_by_xpath('//div[@aria-label="t14"]')    
-    open_setting_bar.click()                                                    #點擊上方setting(步驟)
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//div[@aria-label="t14"]'))).click() #點擊上方setting(步驟)         
     export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))  #匯出步驟及結果到新的表單
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH,'//*[@id="toolbar-menu-layer"]/div/div[2]/div[1]/ul/li[2]'))) 
-    cloud_intergration = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/div[2]/div[1]/ul/li[2]')   
-    cloud_intergration.click()                                                  #點擊cloud_intergration(步驟)
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//p[text()='雲端服務整合']"))).click()#點擊cloud_intergration(步驟)
     export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))  #匯出步驟及結果到新的表單
     time.sleep(2)
     screenshot.canvas_screenshot(driver,setting_menu,case_image) 
@@ -97,8 +90,7 @@ def test_cloud_intergration (driver):
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath)
         export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)                              #比對結果為Fail，匯出結果到新的表單
-    close_menu = driver.find_element_by_css_selector('#toolbar-menu-layer > div > div._2BEMrkOJ > div._24gr4Mph') #關閉設定menu
-    close_menu.click()                                                          #點擊setting視窗 X(步驟)
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[class="active"]'))).click() #點擊X關閉視窗
     export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))  #匯出步驟及結果到新的表單
     write_log.log(content +" End", logPath)
 
@@ -696,29 +688,29 @@ def test_qrcode_share (driver) :
                 )    
     qrcode_share_management = driver.find_element_by_xpath('//div[@aria-label="t8"]')    #開啟file management視窗
     qrcode_share_management.click()                                                       
-    export_table(pathName,TestCase_steps(TestCase),TestCase_result(TestCase))  #匯出步驟及結果到新的表單
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     WebDriverWait(driver, 10).until(                                
         EC.presence_of_element_located((By.XPATH,'//*[@id="toolbar-menu-layer"]/div/ul/li[4]'))  #點選qr code share
                 ) 
     qrcode_share = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/ul/li[4]')   
     qrcode_share.click() 
-    export_table(pathName,TestCase_steps(TestCase),TestCase_result(TestCase))   #匯出步驟及結果到新的表單
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     time.sleep(2)
-    screenshot.canvas_screenshot(driver,qr_file_menu,case_image)  #截圖
+    screenshot.canvas_screenshot(driver,qr_file_menu,case_image)  
     # time.sleep(2)
     screenshot.canvas_screenshot(driver,qr_file_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath)
-        export_table(pathName,TestCase_steps(TestCase)+"+"+step,TestCase_result(TestCase)+"+"+"Pass",case_image)#比對結果為Pass，匯出結果到新的表單
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath)
-        export_table(pathName,TestCase_steps(TestCase)+"+++++"+step,TestCase_result(TestCase)+"+"+"Fail",case_image)#比對結果為fail，匯出結果到新的表單
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)   
     cancal = driver.find_element_by_xpath('/html/body/div[4]/div/div/div[3]/div/div[1]') #關閉付費視窗(點擊取消)
     cancal.click()
-    export_table(pathName,TestCase_steps(TestCase),TestCase_result(TestCase))   #匯出步驟及結果到新的表單
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))  
     write_log.log(content + " End", logPath)
 
 
@@ -745,13 +737,14 @@ def user_profile (driver) :
                 )    
     user_profile = driver.find_element_by_xpath('//div[@aria-label="t15"]')    #開啟user profile視窗
     user_profile.click() 
-    export_table(pathName,TestCase_steps(TestCase),TestCase_result(TestCase))  #匯出步驟及結果到新的表單
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     WebDriverWait(driver, 10).until(                                
         EC.presence_of_element_located((By.XPATH,'//div[@aria-label="t3"]')) 
                 )    
     click_add_page = driver.find_element_by_xpath('//div[@aria-label="t3"]')  
     click_add_page.click()                                                   #消除tool tip (不要focus在元件上) 點擊上一頁按鈕    
     time.sleep(2)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     screenshot.canvas_screenshot(driver,user_profile_menu,case_image) 
     # time.sleep(2)
     screenshot.canvas_screenshot(driver,user_profile_menu,sample_image)
@@ -759,18 +752,22 @@ def user_profile (driver) :
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath) 
-        export_table(pathName,TestCase_steps(TestCase)+"+"+step,TestCase_result(TestCase)+"+"+"Pass",case_image)#比對結果為Pass，匯出結果到新的表單
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath) 
-        export_table(pathName,TestCase_steps(TestCase)+"+"+step,TestCase_result(TestCase)+"+"+"Fail",case_image)#比對結果為Pass，匯出結果到新的表單
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)   
     user_profile.click()  #關閉user_profile視窗
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     write_log.log(content + " End", logPath) 
-    export_table(pathName,TestCase_steps(TestCase),TestCase_result(TestCase)) 
 
 def test_shapes (driver) :
-    case_image = './image/case/shapes.png'
-    sample_image = './image/sample/shapes.png'
+    pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
+    TestCase = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\sign in'
+    case_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\case\\shapes.png'
+    sample_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\sample\\shapes.png'
+    # case_image = './image/case/shapes.png'
+    # sample_image = './image/sample/shapes.png'
     shapes_menu = '//*[@id="toolbar-menu-layer"]/div/div/div[2]'
     name = 'shapes'  
     logPath =       "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案
@@ -783,33 +780,41 @@ def test_shapes (driver) :
         EC.element_to_be_clickable((By.XPATH,'//div[@aria-label="t2e"]')) 
                 )                       
     shapes_management = driver.find_element_by_xpath('//div[@aria-label="t2e"]')    
-    ActionChains(driver).double_click(shapes_management).perform() #開啟(點擊兩下)shapes,lines,tables視窗
-    
+    ActionChains(driver).double_click(shapes_management).perform()  #開啟(點擊兩下)shapes,lines,tables視窗
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     WebDriverWait(driver, 10).until(                                
         EC.presence_of_element_located((By.XPATH,'//div[@aria-label="t3"]')) 
                 )    
     click_add_page = driver.find_element_by_xpath('//div[@aria-label="t3"]')  
-    click_add_page.click()                                                   #消除tool tip (不要focus在元件上) 點擊上一頁按鈕
+    click_add_page.click()  #消除tool tip (不要focus在元件上) 點擊上一頁按鈕
     time.sleep(2)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     screenshot.canvas_screenshot(driver,shapes_menu,case_image) 
-    # time.sleep(2)
-    # screenshot.canvas_screenshot(driver,shapes_menu,sample_image)
+    time.sleep(2)
+    screenshot.canvas_screenshot(driver,shapes_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath) 
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
+
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath) 
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)   
     time.sleep(1)
     write_log.log(content + " End", logPath) 
 
 def test_shapes_lines (driver) :
-    case_image = './image/case/shapes_lines.png'
-    sample_image = './image/sample/shapes_lines.png'
+    pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
+    TestCase = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\sign in'
+    case_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\case\\shapes_lines.png'
+    sample_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\sample\\shapes_lines.png'
+    # case_image = './image/case/shapes_lines.png'
+    # sample_image = './image/sample/shapes_lines.png'
     shapes_lines_menu = '//*[@id="toolbar-menu-layer"]/div/div/div[2]'
     name = 'shapes_lines'  
-    logPath =       "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案
+    logPath = "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案
     # logPath ="./log/" + localTime + "_log.txt" #找位置生成空的txt檔案
     content = "The case 'test_shapes_lines': "
     logCheck.logAmountCheck()
@@ -821,25 +826,34 @@ def test_shapes_lines (driver) :
     shapes_management = driver.find_element_by_xpath('//div[@aria-label="t2e"]')    
     ActionChains(driver).double_click(shapes_management).perform() #開啟(點擊兩下)shapes,lines,tables視窗
     time.sleep(2)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     shapes_lines_management = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/div/div[1]/div[2]/div/div[2]/img') 
-    shapes_lines_management.click() #點擊 lines
+    shapes_lines_management.click() #點擊lines
     time.sleep(2)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     screenshot.canvas_screenshot(driver,shapes_lines_menu,case_image) 
-    # time.sleep(2)
-    # screenshot.canvas_screenshot(driver,shapes_lines_menu,sample_image)
+    time.sleep(2)
+    screenshot.canvas_screenshot(driver,shapes_lines_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath) 
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
+
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath) 
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)   
     time.sleep(1)    
     write_log.log(content + " End", logPath) 
 
 def test_shapes_3Dshapes(driver) :
-    case_image = './image/case/shapes_3Dshapes.png'
-    sample_image = './image/sample/shapes_3Dshapes.png'
+    pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
+    TestCase = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\sign in'
+    case_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\case\\shapes_3Dshapes.png'
+    sample_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\sample\\shapes_3Dshapes.png'
+    # case_image = './image/case/shapes_3Dshapes.png'
+    # sample_image = './image/sample/shapes_3Dshapes.png'
     shapes_3Dshapes_menu = '//*[@id="toolbar-menu-layer"]/div/div/div[2]'
     name = 'shapes_3Dshapes'  
     logPath =       "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案
@@ -854,25 +868,33 @@ def test_shapes_3Dshapes(driver) :
     shapes_management = driver.find_element_by_xpath('//div[@aria-label="t2e"]')    
     ActionChains(driver).double_click(shapes_management).perform() #開啟(點擊兩下)shapes,lines,tables視窗
     time.sleep(1)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     shapes_3Dshapes_management = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/div/div[1]/div[2]/div/div[3]/img') 
     shapes_3Dshapes_management.click() #點擊3Dshapes
     time.sleep(2)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     screenshot.canvas_screenshot(driver,shapes_3Dshapes_menu,case_image) 
-    # time.sleep(2)
-    # screenshot.canvas_screenshot(driver,shapes_3Dshapes_menu,sample_image)
+    time.sleep(2)
+    screenshot.canvas_screenshot(driver,shapes_3Dshapes_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath) 
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath) 
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)   
     time.sleep(1)
     write_log.log(content + " End", logPath) 
 
 def test_shapes_tables(driver) :
-    case_image = './image/case/shapes_tables.png'
-    sample_image = './image/sample/shapes_tables.png'
+    pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
+    TestCase = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\sign in'
+    case_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\case\\shapes_tables.png'
+    sample_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\sample\\shapes_tables.png'
+    # case_image = './image/case/shapes_tables.png'
+    # sample_image = './image/sample/shapes_tables.png'
     shapes_tables_menu = '//*[@id="toolbar-menu-layer"]/div/div/div[2]'
     name = 'shapes_tables' 
     logPath =       "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案 
@@ -887,26 +909,35 @@ def test_shapes_tables(driver) :
     shapes_management = driver.find_element_by_xpath('//div[@aria-label="t2e"]')    
     ActionChains(driver).double_click(shapes_management).perform() #開啟(點擊兩下)shapes,lines,tables視窗
     time.sleep(1)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     shapes_lines_tables = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/div/div[1]/div[2]/div/div[4]/img') 
     shapes_lines_tables.click() #點擊tables
     time.sleep(2)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     screenshot.canvas_screenshot(driver,shapes_tables_menu,case_image) 
-    # time.sleep(2)
-    # screenshot.canvas_screenshot(driver,shapes_tables_menu,sample_image)
+    time.sleep(2)
+    screenshot.canvas_screenshot(driver,shapes_tables_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath) 
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath) 
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)   
     time.sleep(1)
     shapes_management.click() #關閉shapes,lines,tables視窗
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     write_log.log(content + " End", logPath) 
 
 def test_text(driver) :
-    case_image = './image/case/text.png'
-    sample_image = './image/sample/text.png'
+    pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
+    TestCase = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\sign in'
+    case_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\case\\text.png'
+    sample_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\sample\\text.png'
+    # case_image = './image/case/text.png'
+    # sample_image = './image/sample/text.png'
     test_text_menu = '//*[@id="root"]/div[1]/div[1]/div/div/div/div/div[9]/div[1]/div/div[2]/div/div[2]'
     name = 'text'  
     logPath =       "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案
@@ -914,37 +945,46 @@ def test_text(driver) :
     content = "The case 'test_text': "
     logCheck.logAmountCheck()
     write_log.log(content + " Start", logPath) 
-    time.sleep(2)
-    WebDriverWait(driver, 10).until(                                
-        EC.presence_of_element_located((By.XPATH,'//div[@aria-label="t3"]')) 
-                )    
-    click_add_page = driver.find_element_by_xpath('//div[@aria-label="t3"]')  
-    click_add_page.click()                                                   #消除tool tip (不要focus在元件上) 點擊上一頁按鈕  
+    # time.sleep(2)
+    # WebDriverWait(driver, 10).until(                                
+    #     EC.presence_of_element_located((By.XPATH,'//div[@aria-label="t3"]')) 
+    #             )    
+    # click_add_page = driver.find_element_by_xpath('//div[@aria-label="t3"]')  
+    # click_add_page.click()              #消除tool tip (不要focus在元件上) 點擊上一頁按鈕  
     WebDriverWait(driver, 10).until(                              
         EC.element_to_be_clickable((By.XPATH,'//div[@aria-label="tc"]')) 
                 )                       
     test_text_management = driver.find_element_by_xpath('//div[@aria-label="tc"]')    
     test_text_management.click()  #開啟text視窗
     time.sleep(1)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     test_text= driver.find_element_by_xpath('//*[@id="root"]/div[1]/div[1]/div/div/div/div/div[3]/div/div/canvas[2]') 
     test_text.click() #點擊白板一處讓text功能顯示出來
     time.sleep(2)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     screenshot.canvas_screenshot(driver,test_text_menu,case_image) 
-    # time.sleep(2)
-    # screenshot.canvas_screenshot(driver,test_text_menu,sample_image)
+    time.sleep(2)
+    screenshot.canvas_screenshot(driver,test_text_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
-        write_log.log(content + " Pass.............................................", logPath) 
+        write_log.log(content + " Pass.............................................", logPath)
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")   
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath) 
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)  
     driver.find_element_by_xpath('//div[@aria-label="t1f"]').click()  #關閉text視窗
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     write_log.log(content + " End", logPath) 
     
 def test_background(driver) :
-    case_image = './image/case/background.png'
-    sample_image = './image/sample/background.png'
+    pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
+    TestCase = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\sign in'
+    case_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\case\\background.png'
+    sample_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\sample\\background.png'
+    # case_image = './image/case/background.png'
+    # sample_image = './image/sample/background.png'
     background_menu = '//*[@id="toolbar-menu-layer"]/div'
     name = 'background'  
     logPath =       "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案
@@ -958,27 +998,37 @@ def test_background(driver) :
                 )                       
     test_background_management = driver.find_element_by_xpath('//div[@aria-label="t2f"]')    
     test_background_management.click()  #開啟background視窗
-    
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     WebDriverWait(driver, 10).until(                                
         EC.presence_of_element_located((By.XPATH,'//div[@aria-label="t3"]')) 
                 )    
     click_add_page = driver.find_element_by_xpath('//div[@aria-label="t3"]')  
-    click_add_page.click()                                                   #消除tool tip (不要focus在元件上) 點擊上一頁按鈕
+    click_add_page.click()   #消除tool tip (不要focus在元件上) 點擊上一頁按鈕
     time.sleep(2)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     screenshot.canvas_screenshot(driver,background_menu,case_image) 
-    # screenshot.canvas_screenshot(driver,background_menu,sample_image)
+    time.sleep(2)
+    screenshot.canvas_screenshot(driver,background_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath) 
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath)
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)  
+    test_background_management.click() #點擊background視窗，關閉
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     write_log.log(content + " End", logPath)  
 
 def test_background_original(driver) :
-    case_image = './image/case/background_original.png'
-    sample_image = './image/sample/background_original.png'
+    pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
+    TestCase = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\sign in'
+    case_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\case\\background_original.png'
+    sample_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\sample\\background_original.png'
+    # case_image = './image/case/background_original.png'
+    # sample_image = './image/sample/background_original.png'
     background_original_menu = '//*[@id="toolbar-menu-layer"]/div/div[1]'
     name = 'background_original' 
     logPath =       "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案
@@ -991,28 +1041,38 @@ def test_background_original(driver) :
         EC.element_to_be_clickable((By.XPATH,'//div[@aria-label="t2f"]')) 
                 )                       
     test_background_management = driver.find_element_by_xpath('//div[@aria-label="t2f"]')    
-    ActionChains(driver).double_click(test_background_management).perform() #開啟(點擊兩下)background視窗視窗
+    test_background_management.click() #開啟background視窗
     time.sleep(1)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)) 
     test_background_original = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/ul/li[1]/div')    
-    test_background_original.click()  #開啟background_original視窗
+    test_background_original.click()  #點擊background_original視窗
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))    
     WebDriverWait(driver, 100).until(                                
     EC.presence_of_element_located((By.XPATH,'//*[@id="toolbar-menu-layer"]/div/div[2]/div[1]/ul/li[1]/div/div/p')) 
             )    #等待original背景出現
     screenshot.canvas_screenshot(driver,background_original_menu,case_image) 
-    # screenshot.canvas_screenshot(driver,background_original_menu,sample_image)
+    time.sleep(2)
+    screenshot.canvas_screenshot(driver,background_original_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath)
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath)
-    driver.find_element_by_xpath('//div[@aria-label="t1f"]').click #關閉background_original視窗
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)   
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[class="active"]'))).click() #關閉background_original視窗
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))    
     write_log.log(content + " End", logPath)
 
 def test_background_googledrive(driver) :
-    case_image = './image/case/background_googledrive.png'
-    sample_image = './image/sample/background_googledrive.png'
+    pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
+    TestCase = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\sign in'
+    case_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\case\\background_googledrive.png'
+    sample_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\sample\\background_googledrive.png'
+    # case_image = './image/case/background_googledrive.png'
+    # sample_image = './image/sample/background_googledrive.png'
     background_googledrive_menu = '//*[@id="toolbar-menu-layer"]/div/div/div[2]'
     name = 'background_googledrive'  
     logPath =       "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案
@@ -1024,30 +1084,41 @@ def test_background_googledrive(driver) :
     WebDriverWait(driver, 100).until(                              
     EC.element_to_be_clickable((By.XPATH,'//div[@aria-label="t2f"]')) 
                 )                       
-    test_background_management = driver.find_element_by_xpath('//div[@aria-label="t2f"]')    
-    ActionChains(driver).double_click(test_background_management).perform() #開啟(點擊兩下)background視窗視窗
-    time.sleep(1)
-    test_background_googledrive = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/ul/li[2]/div')    
-    test_background_googledrive.click()  #開啟background_googledrive視窗
+    test_background_management = driver.find_element_by_xpath('//div[@aria-label="t2f"]')  
+    test_background_management.click()  #點擊background視窗  
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))    
+    time.sleep(1)                                              
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//p[text()='Google 雲端硬碟']"))).click() #開啟background_googledrive視窗
+    # test_background_googledrive = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/ul/li[2]/div')    
+    # test_background_googledrive.click()  #開啟background_googledrive視窗
     WebDriverWait(driver, 100).until(                                
     EC.element_to_be_clickable((By.XPATH,'//*[@id="toolbar-menu-layer"]/div/div/div[2]/div[1]/div[1]/img')) 
             )    #等待googledrive背景可被點擊
-    time.sleep(2)        
+    time.sleep(2)     
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))    
     screenshot.canvas_screenshot(driver,background_googledrive_menu,case_image) 
-    # screenshot.canvas_screenshot(driver,background_googledrive_menu,sample_image)
+    time.sleep(2) 
+    screenshot.canvas_screenshot(driver,background_googledrive_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath)
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath)
-    driver.find_element_by_xpath('//div[@aria-label="t1f"]').click #關閉background_googledrive視窗
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)   
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[class="active"]'))).click() #關閉background_original視窗
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))    
     write_log.log(content + " End", logPath)
 
 def test_background_image_search(driver) :
-    case_image = './image/case/background_image_search.png'
-    sample_image = './image/sample/background_image_search.png'
+    pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
+    TestCase = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\sign in'
+    case_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\case\\background_image_search.png'
+    sample_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\sample\\background_image_search.png'
+    # case_image = './image/case/background_image_search.png'
+    # sample_image = './image/sample/background_image_search.png'
     background_image_search_menu = '//*[@id="toolbar-menu-layer"]/div/div'
     name = 'background_image_search'  
     logPath =       "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案
@@ -1059,30 +1130,41 @@ def test_background_image_search(driver) :
     WebDriverWait(driver, 100).until(                              
     EC.element_to_be_clickable((By.XPATH,'//div[@aria-label="t2f"]')) 
                 )                       
-    test_background_management = driver.find_element_by_xpath('//div[@aria-label="t2f"]')    
-    ActionChains(driver).double_click(test_background_management).perform() #開啟(點擊兩下)background視窗視窗
+    test_background_management = driver.find_element_by_xpath('//div[@aria-label="t2f"]')   
+    test_background_management.click()  #點擊background視窗   
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))    
     time.sleep(1)
-    test_background_googledrive = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/ul/li[3]/div')    
-    test_background_googledrive.click()    #開啟background_image_search視窗
-    time.sleep(2)  
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//p[text()='圖片搜尋']"))).click() #開啟background_image_search視窗
+    # test_background_googledrive = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/ul/li[3]/div')    
+    # test_background_googledrive.click()   #開啟background_image_search視窗
+    time.sleep(3)  
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))    
     del_cursor = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/div/div[3]')    
-    del_cursor.click()                     #消除打字時候後面一閃一閃的小豎線
+    del_cursor.click()                #消除打字時候後面一閃一閃的小豎線
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))  
     screenshot.canvas_screenshot(driver,background_image_search_menu,case_image) 
-    # time.sleep(2)
-    # screenshot.canvas_screenshot(driver,background_image_search_menu,sample_image)
+    time.sleep(2)
+    screenshot.canvas_screenshot(driver,background_image_search_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath)
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath)
-    driver.find_element_by_xpath('//div[@aria-label="t1f"]').click #關閉background_image_search視窗
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)   
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[class="active"]'))).click() #關閉background_original視窗
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))  
     write_log.log(content + " End", logPath)
 
 def test_background_color(driver) :
-    case_image = './image/case/background_color.png'
-    sample_image = './image/sample/background_color.png'
+    pathName = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\output sign in'
+    TestCase = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\xlsx\\sign in'
+    case_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\case\\background_color.png'
+    sample_image = 'C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\image\\sample\\background_color.png'
+    # case_image = './image/case/background_color.png'
+    # sample_image = './image/sample/background_color.png'
     background_color_menu = '//*[@id="toolbar-menu-layer"]/div/div'
     name = 'background_color'  
     logPath =       "C:\\Users\\Liouki\\Viewsonic-AutoTest\\ClassroomAutoTestServer\\price tier\\log\\" + localTime + "_log.txt" #找位置生成空的txt檔案
@@ -1094,20 +1176,27 @@ def test_background_color(driver) :
     WebDriverWait(driver, 10).until(                              
     EC.element_to_be_clickable((By.XPATH,'//div[@aria-label="t2f"]')) 
                 )                       
-    test_background_management = driver.find_element_by_xpath('//div[@aria-label="t2f"]')    
-    ActionChains(driver).double_click(test_background_management).perform() #開啟(點擊兩下)background視窗視窗
+    test_background_management = driver.find_element_by_xpath('//div[@aria-label="t2f"]') 
+    test_background_management.click()  #點擊background視窗  
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))       
     time.sleep(1)
-    test_background_googledrive = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/ul/li[4]/div')    
-    test_background_googledrive.click()  #開啟background_color視窗
-    time.sleep(1)        
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//p[text()='底色']"))).click() ##開啟background_color視窗
+    # test_background_googledrive = driver.find_element_by_xpath('//*[@id="toolbar-menu-layer"]/div/ul/li[4]/div')    
+    # test_background_googledrive.click()  #開啟background_color視窗
+    time.sleep(1)
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))               
     screenshot.canvas_screenshot(driver,background_color_menu,case_image) 
-    # screenshot.canvas_screenshot(driver,background_color_menu,sample_image)
+    time.sleep(2) 
+    screenshot.canvas_screenshot(driver,background_color_menu,sample_image)
     compare = canvas_compare.canvas_compare(sample_image,case_image,name)
     if compare == True:
         print("Pass.............................................")
         write_log.log(content + " Pass.............................................", logPath)
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Pass",case_image)   
     else:
         print("Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  
         write_log.log(content + " Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", logPath)
-    driver.find_element_by_xpath('//div[@aria-label="t1f"]').click #關閉background_color_menu視窗
+        export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase)+"\n"+"Fail",case_image)   
+    WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'svg[class="active"]'))).click() #關閉background_original視窗
+    export_table(pathName,TestCase_case(TestCase),TestCase_steps(TestCase),TestCase_result(TestCase))       
     write_log.log(content + " End", logPath)

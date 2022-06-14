@@ -1,0 +1,6 @@
+2022-06-14 14-20-21	The case 'test_setting':  Start
+2022-06-14 14-20-28	The case 'test_setting':  Pass.............................................
+2022-06-14 14-20-32	The case 'test_setting':  End
+2022-06-14 14-20-32	The case 'test_cloud_intergration':  Start
+2022-06-14 14-20-39	The case 'test_cloud_intergration':  Pass.............................................
+2022-06-14 14-20-42	The case 'test_cloud_intergration':  End

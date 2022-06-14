@@ -1,3 +1,0 @@
-2022-06-08 08-47-44	The case 'test_setting':  Start
-2022-06-08 08-47-50	The case 'test_setting':  Failxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-2022-06-08 08-47-51	The case 'test_setting':  End
